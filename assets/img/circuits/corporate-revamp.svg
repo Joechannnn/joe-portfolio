@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" fill="none" shape-rendering="geometricPrecision">
+  <g stroke="#fff" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" opacity="0.42">
+    <path d="M18 326h112l20 20h88l20 20h122"/><path d="M18 372h80l18 18h72l18 18h174"/>
+    <path d="M18 584h116l20 20h98l22 22h116"/><path d="M18 632h82l18 18h84l20 20h168"/>
+    <path d="M380 366h120l22 22v116l20 20h92"/><path d="M390 626h110l22 22v132l20 20h108"/>
+    <path d="M634 524h112l22-22h98"/><path d="M650 800h128l22-22h106"/>
+    <path d="M1236 522h-112l-20 20h-88l-20 20H874"/><path d="M1236 570h-82l-18 18h-74l-18 18H874"/>
+    <path d="M1236 834h-128l-22-22H958l-22 22H814"/><path d="M918 924h112l22-22h106"/>
+  </g>
+  <g stroke="#fff" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" opacity="0.74">
+    <path d="M42 420h174l36 36h190"/><path d="M42 520h140l36 36h224"/>
+    <path d="M442 456h122l34 34v124l34 34h194"/><path d="M442 556h92l30 30v110l34 34h164"/>
+    <path d="M826 648h170l34-34h176"/><path d="M762 730h150l36 36h258"/>
+    <path d="M632 648v240l36 36h250"/><path d="M826 560h132l30-30h180"/>
+  </g>
+  <g stroke="#fff" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter" opacity="0.96">
+    <path d="M24 384h204l42 42h192"/><path d="M24 690h174l42 42h202"/>
+    <path d="M422 414h156l42 42v170l42 42h176"/><path d="M814 684h194l42-42h174"/>
+  </g>
+  <g stroke="#fff" fill="none">
+    <g stroke-width="2" opacity="0.5">
+      <rect x="120" y="318" width="16" height="16"/><rect x="246" y="592" width="16" height="16"/>
+      <rect x="490" y="358" width="16" height="16"/><rect x="736" y="512" width="16" height="16"/>
+      <rect x="1114" y="514" width="16" height="16"/><rect x="1082" y="806" width="16" height="16"/>
+    </g>
+    <g stroke-width="5" opacity="0.78">
+      <rect x="24" y="402" width="38" height="38"/><rect x="24" y="502" width="38" height="38"/>
+      <rect x="422" y="436" width="54" height="54"/><path d="M422 436l54 54M476 436l-54 54"/>
+      <rect x="1190" y="596" width="34" height="34"/><rect x="1190" y="752" width="34" height="34"/>
+    </g>
+  </g>
+  <g fill="#fff"><rect x="902" y="908" width="32" height="32"/><rect x="624" y="514" width="20" height="20"/><rect x="804" y="790" width="20" height="20"/></g>
+</svg>

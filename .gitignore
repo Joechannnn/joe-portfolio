@@ -1,0 +1,12 @@
+.DS_Store
+
+# scratch prototype and build scratch
+lab/
+tmp/
+output/
+
+# source files for rendered assets — the site ships the exports only
+assets/blender/
+
+# personal documents
+CV/

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" fill="none" shape-rendering="geometricPrecision">
+  <g stroke="#fff" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" opacity="0.42">
+    <path d="M18 202h132l20 20v84l20 20h174"/><path d="M18 238h96l18 18v94l18 18h214"/>
+    <path d="M18 338h108l20 20v84l20 20h198"/><path d="M18 468h82l18 18v78l20 20h226"/>
+    <path d="M18 598h62l18 18v74l20 20h246"/><path d="M364 326h126l22 22v108l20 20h92"/>
+    <path d="M364 462h98l20 20v148l20 20h122"/><path d="M364 584h76l20 20v126l20 20h144"/>
+    <path d="M624 476h112l22 22v244l22 22h118"/><path d="M624 650h86l20 20v112l20 20h148"/>
+    <path d="M898 764h124l22 22h192"/><path d="M898 852h92l20 20h226"/>
+  </g>
+  <g stroke="#fff" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" opacity="0.74">
+    <path d="M50 286h152l28 28v88l34 34h168"/><path d="M50 416h128l28 28v76l34 34h192"/>
+    <path d="M50 546h108l28 28v68l34 34h212"/><path d="M432 436h146l36 36v292l36 36h210"/>
+    <path d="M432 554h102l32 32v178l36 36"/><path d="M432 676h74l28 28v60"/>
+    <path d="M860 800h152l34 34h158"/><path d="M860 888h112l30 30h202"/>
+  </g>
+  <g stroke="#fff" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter" opacity="0.96">
+    <path d="M182 306h42l38 38v74l34 34h136"/><path d="M138 566h40l42 42v54l42 42h170"/>
+    <path d="M460 438h118l38 38v276l38 38h206"/><path d="M850 842h176l42 42h156"/>
+  </g>
+  <g stroke="#fff" fill="none">
+    <g stroke-width="2" opacity="0.5">
+      <rect x="136" y="194" width="16" height="16"/><rect x="112" y="330" width="16" height="16"/>
+      <rect x="70" y="590" width="16" height="16"/><rect x="480" y="318" width="16" height="16"/>
+      <rect x="726" y="488" width="16" height="16"/><rect x="1010" y="756" width="16" height="16"/>
+    </g>
+    <g stroke-width="5" opacity="0.78">
+      <path d="M32 264h122l28 28v42H32z"/><path d="M32 394h98l28 28v42H32z"/>
+      <path d="M32 524h78l28 28v42H32z"/><rect x="408" y="412" width="52" height="52"/>
+      <path d="M408 412l52 52"/><rect x="1186" y="816" width="38" height="38"/>
+    </g>
+  </g>
+  <g fill="#fff"><rect x="1194" y="824" width="22" height="22"/><rect x="614" y="466" width="20" height="20"/><rect x="850" y="790" width="20" height="20"/></g>
+</svg>

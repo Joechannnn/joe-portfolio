@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>document.documentElement.classList.add(/(?:^|;\s*)joe_portfolio_access=1(?:;|$)/.test(document.cookie) ? "access-granted" : "access-pending");</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joe's Portfolio | Joe Chan — Product Designer &amp; PM</title>
+    <meta
+      name="description"
+      content="Joe Chan is a Hong Kong-based Product Designer and Product Manager who turns business ideas, brand systems and complex services into connected digital products."
+    />
+    <link rel="icon" href="assets/img/logo-j.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/access.css" />
+    <script src="assets/js/access.js" defer></script>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="container nav-inner">
+        <div class="nav-left">
+          <a href="#work">work</a>
+          <a href="#about">about</a>
+        </div>
+        <div class="nav-hello" aria-hidden="true">
+          <span>J</span><span>O</span><span>E</span><span>'</span><span>S</span
+          ><i class="nav-word-gap"></i><span>P</span><span>O</span><span>R</span
+          ><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span
+          ><span>O</span>
+        </div>
+        <div class="nav-right">
+          <a href="mailto:joechanwainam@gmail.com">contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ Hero: the crate ============ -->
+<section class="crate-scene" id="crate-hero" data-surface="dark">
+      <section class="stage" aria-live="polite">
+        <div class="stage-intro" id="intro">
+          <span class="hero-welcome label">Welcome to the</span>
+          <h1 class="intro-title">
+            <span class="line">Collection <em>of</em></span>
+            <span class="line"><em>my</em> Recent</span>
+            <span class="line"
+              >Work<span class="hero-aka label">AKA Portfolio</span></span
+            >
+          </h1>
+          <p class="intro-lede">
+            I'm Joe, a Hong Kong-based Product Designer and Product Manager. I
+            connect business direction, brand systems and UX to ship products
+            that work from first idea to everyday operation.
+          </p>
+          <p class="intro-cue label">Flip the crate &larr; &rarr;</p>
+        </div>
+
+        <div class="stage-case" id="case">
+          <div class="stage-meta">
+            <span class="stage-index" id="index"></span>
+            <h2 class="stage-title" id="title"></h2>
+            <p class="stage-tag" id="tag"></p>
+            <a class="stage-open" id="open" href="#">Open case</a>
+          </div>
+          <div class="stage-art" id="art"></div>
+        </div>
+      </section>
+
+      <div
+        class="crate"
+        id="crate"
+        role="listbox"
+        aria-label="Select a case study"
+        tabindex="0"
+      >
+        <div class="crate-rail" id="rail"></div>
+        <button
+          class="crate-nav crate-nav--prev"
+          id="prev"
+          type="button"
+          aria-label="Previous record"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M15 5 8 12l7 7" />
+          </svg>
+        </button>
+        <button
+          class="crate-nav crate-nav--next"
+          id="next"
+          type="button"
+          aria-label="Next record"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <span class="crate-hint">Drag to browse</span>
+        <span class="crate-count" id="count"></span>
+      </div>
+    </section>
+
+      <!-- ============ Focus / stats ============ -->
+      <section class="focus" data-surface="light">
+        <div class="container">
+          <h2 class="focus-statement reveal">
+            Strategy, systems and design, <em>connected from</em> first idea to
+            <em>real-world launch.</em>
+          </h2>
+          <div class="focus-stats">
+            <div class="reveal">
+              <div class="stat-value" data-count="5">
+                <span class="num">5</span><span class="unit">+</span>
+              </div>
+              <p class="stat-label">years of experience</p>
+            </div>
+            <div class="reveal">
+              <div class="stat-value" data-count="10">
+                <span class="num">10</span><span class="unit">+</span>
+              </div>
+              <p class="stat-label">projects delivered</p>
+            </div>
+            <div class="reveal">
+              <div class="stat-value" data-count="95">
+                <span class="num">95</span><span class="unit">%</span>
+              </div>
+              <p class="stat-label">usability-test satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Work: the track listing ============
+           SINGLE SOURCE OF TRUTH for the whole site's project list.
+           The crate hero builds its sleeves by reading these rows, so to add
+           a project you add one <li> here and write its case page. Nothing
+           else — no per-project CSS, no JS array to keep in sync.
+           data-cover  the sleeve image the crate and the phone thumb use
+           data-circuit the project-specific PCB trace mask shared by every cover surface
+           data-accent the project colour behind transparent sleeve/thumb art
+           data-a/-b   the two authored title lines the crate stacks
+      ============================================================ -->
+      <section class="work" id="work" data-surface="dark">
+        <div class="container">
+          <div class="work-head reveal">
+            <h2 class="label">Selected work</h2>
+            <span class="work-count" id="work-count"></span>
+          </div>
+
+          <ol class="worklist" id="worklist">
+            <li>
+              <a
+                class="wl-row"
+                href="projects/crm.html"
+                data-cover="assets/img/crm/dashboard-key-visual.png"
+                data-accent="#c80815"
+                data-a="Audience"
+                data-b="to Action"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Audience to Action</span>
+                <em class="wl-tag">CRM · segmentation · campaign operations</em>
+                <span class="wl-client">好大個網 CRM</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/scene.html"
+                data-cover="assets/img/thumbnails/scene-crossover-cutout.webp"
+                data-accent="#c43a32"
+                data-a="SCENE ×"
+                data-b="Horror Online"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Crossover Launch</span>
+                <em class="wl-tag">brand · merchandise · commerce</em>
+                <span class="wl-client">SCENE × Horror Online</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/aapoakgy.html"
+                data-cover="assets/img/thumbnails/aapoakgy-ammolite-cutout.webp"
+                data-accent="#197f6c"
+                data-a="From Brand"
+                data-b="to Checkout"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">From Brand to Checkout</span>
+                <em class="wl-tag">brand system · luxury commerce</em>
+                <span class="wl-client">AAPOAKGY</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/edmondpoon.html"
+                data-cover="assets/img/thumbnails/edmond-horror-online-hub-v3.jpg"
+                data-accent="#be1522"
+                data-a="Horror Online"
+                data-b="&amp; Beyond"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">From Horror Online to Platform</span>
+                <em class="wl-tag">programmes · live · commerce · services</em>
+                <span class="wl-client">edmondpoon.com</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/vfit24.html"
+                data-cover="assets/img/thumbnails/vfit24-cutout.webp"
+                data-circuit="assets/img/circuits/vfit24.svg"
+                data-accent="#08b9df"
+                data-a="Pay by"
+                data-b="the Minute"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Pay by the Minute</span>
+                <em class="wl-tag">24-hour smart gym ecosystem</em>
+                <span class="wl-client">V-FIT24</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/read-tongue.html"
+                data-cover="assets/img/thumbnails/tongue-diagnosis-cutout.webp"
+                data-circuit="assets/img/circuits/tongue-diagnosis.svg"
+                data-accent="#b85b4e"
+                data-a="Tongue"
+                data-b="Diagnosis"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Tongue Diagnosis</span>
+                <em class="wl-tag">AI-assisted TCM web app</em>
+                <span class="wl-client">Read Tongue Online</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/bba.html"
+                data-cover="assets/img/thumbnails/aura-reading-cutout.webp"
+                data-circuit="assets/img/circuits/aura-reading.svg"
+                data-accent="#6d63d8"
+                data-a="Aura"
+                data-b="Reading"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Aura Reading</span>
+                <em class="wl-tag">design system &amp; metaphysics</em>
+                <span class="wl-client">BigBigAir</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/divit-miles.html"
+                data-cover="assets/img/thumbnails/miles-conversion-cutout.webp"
+                data-circuit="assets/img/circuits/miles-conversion.svg"
+                data-accent="#f2b82d"
+                data-a="Miles"
+                data-b="Conversion"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Miles Conversion</span>
+                <em class="wl-tag">fintech app &amp; loyalty</em>
+                <span class="wl-client">divit</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/divit-website.html"
+                data-cover="assets/img/thumbnails/corporate-revamp-cutout.webp"
+                data-circuit="assets/img/circuits/corporate-revamp.svg"
+                data-accent="#f2b51f"
+                data-a="Corporate"
+                data-b="Revamp"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Corporate Revamp</span>
+                <em class="wl-tag">brand &amp; website</em>
+                <span class="wl-client">divit</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/twgh.html"
+                data-cover="assets/img/thumbnails/temple-culture-cutout.webp"
+                data-circuit="assets/img/circuits/temple-culture.svg"
+                data-accent="#df6158"
+                data-a="Temple"
+                data-b="Culture"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Temple Culture</span>
+                <em class="wl-tag">research &amp; digital service</em>
+                <span class="wl-client">Tung Wah Group of Hospitals</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="wl-row"
+                href="projects/aldi.html"
+                data-cover="assets/img/thumbnails/aldi-ecommerce-cutout.webp"
+                data-circuit="assets/img/circuits/aldi-ecommerce.svg"
+                data-accent="#34a9d4"
+                data-a="Grocery"
+                data-b="Goes Digital"
+              >
+                <span class="wl-num"></span>
+                <span class="wl-title">Grocery Goes Digital</span>
+                <em class="wl-tag">e-commerce &amp; research</em>
+                <span class="wl-client">ALDI</span>
+              </a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ About ============ -->
+      <section class="about" id="about" data-surface="light">
+        <span class="ghost ghost-j" aria-hidden="true">J</span>
+        <span class="ghost ghost-c" aria-hidden="true">C</span>
+        <div class="container">
+          <h2 class="label reveal">
+            About — 陳韋男
+          </h2>
+          <div class="about-grid">
+            <p class="about-text reveal">
+              I work across <strong>product design, product management and UX
+              leadership.</strong> As Chief UX Designer for edmondpoon.com, I
+              connect commercial intent, service operations and brand
+              expression into products people can understand, use and trust.
+            </p>
+            <ul class="skills-list reveal" aria-label="Skills">
+              <li>PMP Chartered</li>
+              <li>Product Designer</li>
+              <li>Product management</li>
+              <li>UX leadership</li>
+              <li>UX/UI design</li>
+              <li>UX research</li>
+              <li>Web design</li>
+              <li>Web development</li>
+              <li>App design</li>
+              <li>E-commerce</li>
+              <li>Fintech</li>
+              <li>Community services</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ Contact ============ -->
+    <footer class="contact" id="contact" data-surface="dark">
+      <div class="contact-dots" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span
+        ><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="seeyou" aria-hidden="true">
+        <span class="s1">S</span><span class="s2">E</span
+        ><span class="s3">E</span><span class="s4">Y</span
+        ><span class="s5">O</span><span class="s6">U</span>
+      </div>
+      <div class="container">
+        <div class="contact-cols">
+          <div class="reveal">
+            <h2 class="label">Thank you</h2>
+            <p class="contact-msg">
+              Welcome to reach out with any questions, project inquiries &amp;
+              collaborations.
+              <a href="mailto:joechanwainam@gmail.com"
+                >joechanwainam@gmail.com</a
+              >
+            </p>
+          </div>
+          <div class="contact-social reveal">
+            <h2 class="label">Keep in touch</h2>
+            <a
+              href="https://www.linkedin.com/in/joechanuiux"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="https://medium.com/@joechanwainam"
+              target="_blank"
+              rel="noopener"
+              >Medium</a
+            >
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span
+            >All rights reserved · <span id="year">2026</span> · Joe Chan</span
+          >
+          <span>Full portfolio with NDA work on request</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

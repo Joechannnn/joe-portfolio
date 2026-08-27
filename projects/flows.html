@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>document.documentElement.classList.add(/(?:^|;\s*)joe_portfolio_access=1(?:;|$)/.test(document.cookie) ? "access-granted" : "access-pending");</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Screen Flow Library · Joe Chan</title>
+    <meta
+      name="description"
+      content="A screen and flow archive for Joe Chan's five most recent product design case studies."
+    />
+    <link rel="icon" href="../assets/img/logo-j.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/access.css" />
+    <script src="../assets/js/access.js" defer></script>
+    <script src="../assets/js/flows.js" defer></script>
+  </head>
+  <body class="flow-body">
+    <header class="site-nav">
+      <div class="container nav-inner">
+        <div class="nav-left">
+          <a href="../index.html">home</a>
+          <a href="../index.html#work">work</a>
+          <a id="flow-back-nav" href="../index.html#work">case study</a>
+        </div>
+        <div class="nav-hello" aria-hidden="true">
+          <span>S</span><span>C</span><span>R</span><span>E</span><span>E</span
+          ><span>N</span><i class="nav-word-gap"></i><span>F</span><span>L</span
+          ><span>O</span><span>W</span><span>S</span>
+        </div>
+        <div class="nav-right">
+          <a href="mailto:joechanwainam@gmail.com">contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flow-page" data-surface="dark">
+      <section class="flow-hero">
+        <div class="flow-shell">
+          <a class="flow-back" id="flow-back" href="../index.html#work"
+            >← Back to case study</a
+          >
+          <h1 id="flow-title">Project screen flow</h1>
+          <p class="flow-intro" id="flow-intro"></p>
+          <div class="flow-meta" aria-label="Archive information">
+            <span id="flow-coverage">Available screen evidence</span>
+            <span>5 recent case studies</span>
+            <span id="flow-layout">Mobile-first layout</span>
+            <span>Click any screen to inspect</span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="flow-case-nav" aria-label="Choose a project">
+        <div class="flow-shell" id="flow-case-nav"></div>
+      </nav>
+
+      <div class="flow-shell flow-toolbar" id="flow-toolbar"></div>
+
+      <div class="flow-shell flow-groups" id="flow-root" aria-live="polite"></div>
+
+      <noscript>
+        <p class="flow-shell flow-noscript">
+          JavaScript is required to choose and display the project flow archive.
+        </p>
+      </noscript>
+    </main>
+
+    <dialog class="flow-dialog" id="flow-dialog">
+      <button class="flow-dialog-close" type="button" aria-label="Close image">
+        Close
+      </button>
+      <figure>
+        <img
+          id="flow-dialog-image"
+          src="../assets/img/edmond/platform-logo.png"
+          alt="Selected project screen"
+          width="240"
+          height="60"
+        />
+        <figcaption id="flow-dialog-caption"></figcaption>
+      </figure>
+    </dialog>
+  </body>
+</html>

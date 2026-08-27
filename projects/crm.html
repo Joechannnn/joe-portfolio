@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.classList.add(/(?:^|;\s*)joe_portfolio_access=1(?:;|$)/.test(document.cookie) ? "access-granted" : "access-pending");</script>
+    <title>好大個網 CRM — From Audience Data to Action · Joe Chan</title>
+    <meta
+      name="description"
+      content="Case study: designing a CRM operating system that turns audience, commerce and campaign data into segments, decisions and next actions."
+    />
+    <link rel="icon" href="../assets/img/logo-j.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/access.css" />
+    <script src="../assets/js/access.js" defer></script>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="container nav-inner">
+        <div class="nav-left">
+          <a href="../index.html">home</a>
+          <a href="../index.html#work">work</a>
+          <a href="../index.html#about">about</a>
+        </div>
+        <div class="nav-hello" aria-hidden="true">
+          <span>J</span><span>O</span><span>E</span><span>'</span><span>S</span
+          ><i class="nav-word-gap"></i><span>P</span><span>O</span><span>R</span
+          ><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span
+          ><span>O</span>
+        </div>
+        <div class="nav-right">
+          <a href="mailto:joechanwainam@gmail.com">contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main data-surface="light">
+      <section class="case-hero">
+        <div class="container">
+          <h1 class="case-title">From audience data to the next best action.</h1>
+          <p class="case-intro">
+            I designed a CRM operating system that connects membership,
+            content, commerce and campaign behaviour—so management can move
+            from a portfolio-level signal to a specific audience and action
+            without losing the reasoning in between.
+          </p>
+          <div class="case-meta">
+            <div>
+              <span class="meta-label">Role</span>
+              <p>Product Designer · Product Manager</p>
+            </div>
+            <div>
+              <span class="meta-label">Platform</span>
+              <p>Responsive internal CRM · desktop and iPad</p>
+            </div>
+            <div>
+              <span class="meta-label">Scope</span>
+              <p>Product model · IA · UX/UI · prototype · handoff</p>
+            </div>
+            <div>
+              <span class="meta-label">Status</span>
+              <p>Interactive prototype · developer handoff · 2026</p>
+            </div>
+          </div>
+          <a class="flow-library-link" href="flows.html?case=crm">
+            <span>Explore the CRM screen-flow library</span>
+            <span aria-hidden="true">View flow →</span>
+          </a>
+        </div>
+      </section>
+
+      <figure class="case-artifact case-artifact--crm reveal" data-surface="dark">
+        <img
+          width="1440"
+          height="1200"
+          src="../assets/img/crm/dashboard-overview.png"
+          alt="好大個網 CRM main dashboard showing membership health, campaign performance and six audience tiers"
+        />
+        <figcaption>
+          The main dashboard is the product's key visual: one operational view
+          connects membership health, campaign performance and the next action.
+        </figcaption>
+      </figure>
+
+      <section class="case-section">
+        <div class="container">
+          <h2 class="reveal">The product challenge</h2>
+          <div class="case-body reveal">
+            <p>
+              好大個網 serves a mixed ecosystem of programmes, subscriptions,
+              live participation, products and events. Useful signals existed,
+              but they were spread across accounts, orders, pixels, surveys and
+              campaign tools. Management could see numbers without always being
+              able to answer the next question: <em>who needs attention, why,
+              and what should we do now?</em>
+            </p>
+            <p>
+              The product therefore had to work at two resolutions. At the
+              macro level, it needed to explain the health of a modelled
+              208,324-member population and current campaigns. At the micro
+              level, it needed to preserve
+              the behavioural trail behind an individual member, then turn that
+              evidence into a reusable audience, campaign or service action.
+            </p>
+            <p class="case-quote">
+              The goal was not to put more data on a dashboard. It was to shorten
+              the distance between a signal and a defensible action.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-section--flush">
+        <div class="container">
+          <h2 class="reveal">One operating loop</h2>
+          <div class="case-body reveal">
+            <h3>See the health of the audience</h3>
+            <p>
+              A six-level, mutually exclusive membership ladder makes the total
+              population auditable. Direction is expressed as health rather
+              than raw growth: an increase in valuable segments is positive,
+              while a decrease in at-risk or inactive members is also positive.
+            </p>
+            <h3>Turn a signal into a cohort</h3>
+            <p>
+              Managers can move from segment movement, funnel loss or member
+              behaviour into a saved audience. Manual filters and the AI filter
+              use the same visible conditions, so automation remains editable
+              instead of becoming a black box.
+            </p>
+            <h3>Launch, learn and act again</h3>
+            <p>
+              Campaigns are created from reusable groups, then released in
+              deduplicated batches through Woztell. Each batch records its own
+              audience, funnel, cost and learning, and the next batch can inherit
+              what worked rather than restarting from a blank brief.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="design-snapshot"
+        aria-labelledby="crm-system-title"
+        data-surface="dark"
+        style="--snapshot-signal: #c80815"
+      >
+        <div class="snapshot-inner">
+          <div class="snapshot-head reveal">
+            <h2 id="crm-system-title">Macro signal. Micro evidence.</h2>
+            <p>
+              The interface connects a management-level view of portfolio
+              health with the audience tools used to act on it. These captures
+              come directly from the working prototype.
+            </p>
+          </div>
+          <div class="snapshot-board reveal">
+            <figure class="snapshot-frame snapshot-frame--crm-screen">
+              <div class="snapshot-media">
+                <img
+                  width="1440"
+                  height="1200"
+                  src="../assets/img/crm/dashboard-overview.png"
+                  alt="CRM dashboard with campaign status, six audience tiers, revenue trends and segment health"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="A">
+                <span><strong>Start with portfolio health.</strong> Campaign status and member tiers establish the management view before deeper analysis.</span>
+              </figcaption>
+            </figure>
+            <figure class="snapshot-frame snapshot-frame--detail snapshot-frame--crm-screen">
+              <div class="snapshot-media">
+                <img
+                  width="1440"
+                  height="1440"
+                  src="../assets/img/crm/member-list-concept.jpg"
+                  alt="Audience-management concept connecting member selection with campaign creation"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="B">
+                <span><strong>Keep action beside evidence.</strong> Audience selection leads directly into a reusable group or campaign rather than a disconnected export.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container">
+          <h2 class="reveal">Decisions that shaped the system</h2>
+          <div class="case-body reveal">
+            <h3>Choose clarity over a theoretically richer segment model</h3>
+            <p>
+              I explored an overlapping value-by-status model, where a VIP could
+              also be dormant. It preserved more nuance, but made totals and
+              campaign ownership harder to explain. I moved back to one
+              mutually exclusive ladder for operational clarity and kept
+              behavioural detail available through filters and profiles.
+            </p>
+            <h3>Put the conclusion before the chart</h3>
+            <p>
+              The management reading order is consistent: conclusion first,
+              immediate action second, detail on demand. This is why the product
+              avoids decorative flow diagrams and uses comparable bars, lists
+              and expandable evidence instead.
+            </p>
+            <h3>Separate committed cost from successful redemption</h3>
+            <p>
+              Campaign cost is split into fixed WhatsApp spend and redemption
+              cost. A high redemption cost can mean the offer converted; the
+              avoidable waste is fixed spend sent to people who never acted.
+              The model prevents the interface from labelling success as waste.
+            </p>
+            <h3>Make batch learning part of the workflow</h3>
+            <p>
+              Each batch uses its own filters and automatically excludes people
+              reached earlier. Funnel loss, cost and qualitative learning sit
+              together, allowing the next batch—or the next campaign version—to
+              inherit a specific decision rule.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-section--flush">
+        <div class="container">
+          <h2 class="reveal">Real data, honest labels</h2>
+          <div class="case-body reveal">
+            <p>
+              The prototype combines working interaction models with two real
+              analytical cases. I keep those evidence types explicit: recorded
+              figures describe a source snapshot; forecast ranges remain
+              projections, not shipped impact.
+            </p>
+            <dl class="crm-evidence-strip" aria-label="CRM evidence summary">
+              <div>
+                <dt>7,734</dt>
+                <dd>Lapsed subscribers in the 24 Jul 2026 source snapshot</dd>
+              </div>
+              <div>
+                <dt>899</dt>
+                <dd>Members inside the first 30-day recovery window</dd>
+              </div>
+              <div>
+                <dt>149</dt>
+                <dd>Previous-year event buyers identified for win-back</dd>
+              </div>
+              <div>
+                <dt>HK$371.8K</dt>
+                <dd>Recorded 2025 event revenue represented by that cohort</dd>
+              </div>
+            </dl>
+            <p class="crm-evidence-note">
+              The churn model also identified 956 high-commitment lapsed
+              subscribers and an average of approximately 483 new lapses per
+              month. A separate event survey recorded 111 responses, four
+              self-reported registrations and approximately HK$9,400 in
+              attributed revenue at the time of the snapshot.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="design-snapshot"
+        aria-labelledby="crm-proof-title"
+        data-surface="dark"
+        style="--snapshot-signal: #c80815"
+      >
+        <div class="snapshot-inner">
+          <div class="snapshot-head reveal">
+            <h2 id="crm-proof-title">From portfolio signal to a campaign.</h2>
+            <p>
+              The evidence stays visible inside the operating flow: compare
+              active campaigns, choose an audience, estimate cost and move into
+              a structured launch without leaving the product.
+            </p>
+          </div>
+          <div class="snapshot-board reveal">
+            <figure class="snapshot-frame snapshot-frame--crm-screen snapshot-frame--crm-wide">
+              <div class="snapshot-media">
+                <img
+                  width="1440"
+                  height="1200"
+                  src="../assets/img/crm/campaign-list.png"
+                  alt="CRM campaign list comparing status, batches, revenue and conversion across marketing activities"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="A">
+                <span><strong>Compare before acting.</strong> Status, batch progress, revenue and conversion make active campaigns scannable as one operating portfolio.</span>
+              </figcaption>
+            </figure>
+            <figure class="snapshot-frame snapshot-frame--detail snapshot-frame--crm-screen snapshot-frame--crm-wide">
+              <div class="snapshot-media">
+                <img
+                  width="1440"
+                  height="1200"
+                  src="../assets/img/crm/campaign-builder.png"
+                  alt="CRM campaign builder showing audience selection, a four-step launch flow and live cost estimates"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="B">
+                <span><strong>Make the next action concrete.</strong> A saved audience enters a four-step builder while cost and likely response stay visible beside the decision.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container">
+          <h2 class="reveal">The product surface</h2>
+          <div class="case-body reveal">
+            <ul>
+              <li><strong>Management dashboard:</strong> segment health, movement, campaign status and comparable performance</li>
+              <li><strong>Audience system:</strong> search, manual and AI-assisted filters, reusable groups, subgrouping and bulk tags</li>
+              <li><strong>Campaign builder:</strong> audience, content journey, incentive rules, review and batch launch</li>
+              <li><strong>Campaign intelligence:</strong> total and per-batch funnels, deduplication, costs, promotion-code tracking and learning</li>
+              <li><strong>Member profile:</strong> commercial value, content participation, pixel timeline and next-best-action context</li>
+              <li><strong>Live assistant:</strong> glanceable iPad view that overlays member context on the conversation Edmond is already following</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="design-snapshot"
+        aria-labelledby="crm-profile-title"
+        data-surface="dark"
+        style="--snapshot-signal: #c80815"
+      >
+        <div class="snapshot-inner">
+          <div class="snapshot-head reveal">
+            <h2 id="crm-profile-title">A member is more than a tier.</h2>
+            <p>
+              The segment supports prioritisation; the profile preserves the
+              purchase, subscription and participation evidence needed for a
+              responsible individual action.
+            </p>
+          </div>
+          <div class="snapshot-board reveal">
+            <figure class="snapshot-frame snapshot-frame--crm-screen">
+              <div class="snapshot-media">
+                <img
+                  width="1440"
+                  height="1984"
+                  src="../assets/img/crm/member-profile-traits.jpg"
+                  alt="Member-profile design exploring commercial and engagement traits"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="A">
+                <span><strong>Explain the score.</strong> Commercial and engagement traits expose the factors behind a segment label.</span>
+              </figcaption>
+            </figure>
+            <figure class="snapshot-frame snapshot-frame--detail snapshot-frame--crm-screen">
+              <div class="snapshot-media">
+                <img
+                  width="1440"
+                  height="1438"
+                  src="../assets/img/crm/member-profile-spend.jpg"
+                  alt="Member-profile design showing spending history and transaction evidence"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="B">
+                <span><strong>Trace the evidence.</strong> Transactions and activity remain inspectable before a person receives a new label, offer or outreach.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-section--flush">
+        <div class="container">
+          <h2 class="reveal">Iterations that improved clarity</h2>
+          <div class="case-body reveal">
+            <h3>From checkbox editing to a directional transfer</h3>
+            <p>
+              An early single-list editor made it hard to understand whether a
+              member was being added, retained or removed. I replaced it with a
+              two-column candidate-to-group transfer, keeping additions and
+              removals visible until save.
+            </p>
+            <h3>From separate AI and manual filters to one explainable model</h3>
+            <p>
+              The AI assistant now translates a request into the same filter
+              rows used by the manual interface. A manager can inspect, edit or
+              delete each condition before applying it.
+            </p>
+            <h3>From campaign totals to an inspectable funnel</h3>
+            <p>
+              Every funnel step can open the people who completed it or dropped
+              before it. That cohort can be tagged, saved or used to start the
+              next batch, closing the loop between reporting and operation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container">
+          <h2 class="reveal">What the work demonstrates</h2>
+          <div class="case-body reveal">
+            <ul>
+              <li><strong>Product modelling:</strong> a coherent operating model across audience health, campaigns, individual evidence and live use</li>
+              <li><strong>Decision design:</strong> numbers are framed around meaning, cost logic and the next action instead of dashboard density</li>
+              <li><strong>Iteration:</strong> ambiguous models and interactions were discarded when they failed to explain direction clearly</li>
+              <li><strong>Delivery thinking:</strong> data contracts, edge cases, language rules, handoff detail and regression checks are documented alongside the prototype</li>
+            </ul>
+            <p class="case-credit">
+              Privacy note: member-level source records are intentionally not
+              reproduced. Portfolio evidence is limited to mock interface data
+              and anonymised aggregate analysis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-next">
+        <span class="label">Next case study</span>
+        <a href="scene.html">SCENE × Horror Online — Crossover Launch →</a>
+      </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,794 @@
+/* Joe Chan — portfolio entrance.
+   Part of the immersive vinyl direction: a coin slot fronts the collection.
+   Gate styles only; the portfolio itself is in style.css. */
+
+html.access-pending {
+  overflow: hidden;
+  background: #0b0e0f;
+}
+
+html.access-pending body {
+  min-height: 100svh;
+  background: #0b0e0f;
+  overscroll-behavior: none;
+}
+
+/* The custom follower is too imprecise for form fields. Use the platform
+   pointer while the gate is up; the custom cursor returns after release. */
+html.access-pending .cursor-dot,
+html.access-pending .cursor-ring {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+html.access-pending body.custom-cursor,
+html.access-pending .vinyl-gate,
+html.access-pending .vinyl-gate * {
+  cursor: default;
+}
+
+html.access-pending .vinyl-field input {
+  cursor: text;
+}
+
+html.access-pending .vinyl-form__submit:not(:disabled) {
+  cursor: pointer;
+}
+
+html.access-pending .vinyl-form__submit:disabled {
+  cursor: wait;
+}
+
+html.access-pending body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring):not(script):not(style) {
+  visibility: hidden;
+}
+
+html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring):not(script):not(style) {
+  visibility: visible;
+}
+
+.vinyl-gate,
+.vinyl-gate * {
+  box-sizing: border-box;
+}
+
+.vinyl-gate {
+  --gate-ink: var(--ink, #0b0e0f);
+  --gate-orange: var(--orange, #ffa400);
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  overflow: hidden;
+  color: #fff;
+  background: var(--gate-ink);
+  visibility: visible !important;
+  isolation: isolate;
+  transition: opacity 0.24s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.vinyl-gate::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.045;
+  background-image: url("../img/circuits/stage-field.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.vinyl-gate.is-committing::before,
+.vinyl-gate.is-playing::before {
+  opacity: 0.015;
+}
+
+.vinyl-gate.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vinyl-gate.is-wiping {
+  background: transparent;
+}
+
+.vinyl-gate.is-wiping::before,
+.vinyl-gate.is-wiping .gate-cinema,
+.vinyl-gate.is-wiping .vinyl-gate__shell {
+  opacity: 0;
+}
+
+/* ---------- Full-bleed point-of-view film ---------- */
+
+.gate-cinema {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--gate-ink);
+  transition: opacity 0.16s ease;
+}
+
+.gate-cinema__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(1.08) contrast(1.04) saturate(1.02);
+  transition: filter 0.42s ease;
+}
+
+.gate-cinema::before,
+.gate-cinema::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.42s ease;
+}
+
+/* A practical exposure mask for the check-in, not a second panel. */
+.gate-cinema::before {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(6, 8, 9, 0.68) 0, rgba(6, 8, 9, 0.36) 38%, transparent 61%),
+    linear-gradient(0deg, rgba(6, 8, 9, 0.36), transparent 48%);
+}
+
+.gate-cinema::after {
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 38% 30% at 53% 72%, rgba(255, 164, 0, 0.045), transparent 72%),
+    radial-gradient(circle at 55% 48%, transparent 42%, rgba(0, 0, 0, 0.14) 100%);
+}
+
+.vinyl-gate.is-playing .gate-cinema::before {
+  opacity: 0;
+}
+
+.vinyl-gate.is-playing .gate-cinema__video {
+  filter: brightness(1) contrast(1.04) saturate(0.98);
+}
+
+.gate-slot-anchor,
+.gate-record-anchor {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.gate-slot-anchor {
+  /* JS refines this fallback against the source-film crop. */
+  top: 48.4%;
+  left: 70.2%;
+  width: 4px;
+  height: 44px;
+}
+
+.gate-record-anchor {
+  top: 51%;
+  left: 50%;
+  width: clamp(52px, 7vmin, 86px);
+  height: clamp(24px, 3.4vmin, 42px);
+  border-radius: 50%;
+}
+
+/* ---------- Scene frame ---------- */
+
+.vinyl-gate__shell {
+  position: relative;
+  z-index: 3;
+  width: min(1280px, calc(100% - 48px));
+  min-height: 100svh;
+  margin-inline: auto;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  padding-bottom: max(22px, env(safe-area-inset-bottom));
+}
+
+.vinyl-gate__stage {
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(54px, 9vh, 108px);
+}
+
+/* ---------- Editorial check-in — part of the scene, never a UI card ---------- */
+
+.vinyl-form {
+  position: relative;
+  width: min(736px, 58vw);
+  margin-left: -36px;
+  padding: 34px 36px 30px;
+  color: #fff;
+  background: transparent;
+  isolation: isolate;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
+}
+
+.vinyl-form::before {
+  content: "";
+  position: absolute;
+  inset: -22px -44px -26px -38px;
+  z-index: -1;
+  background: rgba(4, 6, 7, 0.58);
+  -webkit-backdrop-filter: blur(9px) brightness(0.82) saturate(0.82);
+  backdrop-filter: blur(9px) brightness(0.82) saturate(0.82);
+  -webkit-mask-image: radial-gradient(ellipse 88% 84% at 32% 52%, #000 0 58%, rgba(0, 0, 0, 0.78) 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 84% at 32% 52%, #000 0 58%, rgba(0, 0, 0, 0.78) 72%, transparent 100%);
+  pointer-events: none;
+}
+
+.vinyl-pass__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 108px;
+  align-items: end;
+  gap: 32px;
+}
+
+.vinyl-pass__title {
+  margin: 0;
+  font-size: clamp(3.8rem, 6.2vw, 5.8rem);
+  font-weight: 500;
+  line-height: 0.76;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.vinyl-pass__title span,
+.vinyl-pass__title em {
+  display: block;
+}
+
+.vinyl-pass__title em {
+  margin-left: 0.5em;
+  font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
+  font-size: 1.08em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.vinyl-pass__side {
+  max-width: 108px;
+  padding-bottom: 6px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.14em;
+  text-align: right;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+}
+
+.vinyl-pass__prompt {
+  max-width: 570px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-sans, "Archivo", sans-serif);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.45;
+}
+
+.vinyl-pass__identity,
+.vinyl-pass__hook,
+.vinyl-pass__instruction {
+  display: block;
+}
+
+.vinyl-pass__hook {
+  max-width: 540px;
+  margin-top: 10px;
+  color: #fff;
+  font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.22;
+}
+
+.vinyl-pass__instruction {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.vinyl-form__fields {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 28px;
+  margin-top: 30px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.42);
+}
+
+.vinyl-field {
+  display: block;
+}
+
+.vinyl-field label {
+  display: block;
+  margin-bottom: 2px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.18s ease;
+}
+
+.vinyl-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 5px 0 8px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 0;
+  outline: 0;
+  color: #fff;
+  background: transparent;
+  font: 500 16px/1.25 var(--font-sans, "Archivo", sans-serif);
+  transition: border-color 0.18s ease;
+  -webkit-appearance: none;
+}
+
+.vinyl-field input::placeholder {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.vinyl-field:focus-within label {
+  color: var(--gate-orange);
+}
+
+.vinyl-field input:focus {
+  border-color: var(--gate-orange);
+}
+
+.vinyl-field.has-error label,
+.vinyl-field__error {
+  color: #ff9d93;
+}
+
+.vinyl-field.has-error input {
+  border-color: #ff9d93;
+}
+
+.vinyl-field__error {
+  min-height: 17px;
+  margin: 3px 0 0;
+  font-size: 11px;
+  line-height: 1.35;
+  visibility: hidden;
+}
+
+.vinyl-field.has-error .vinyl-field__error {
+  visibility: visible;
+}
+
+.vinyl-form__honey {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.vinyl-form__submit {
+  position: relative;
+  width: min(440px, 100%);
+  min-height: 64px;
+  margin-top: 20px;
+  padding: 16px 90px 16px 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(31, 34, 34, 0.97) 0%, rgba(8, 11, 11, 0.99) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.72),
+    0 10px 26px rgba(0, 0, 0, 0.4);
+  font: 600 11px/1.2 var(--font-sans, "Archivo", sans-serif);
+  letter-spacing: 0.17em;
+  text-align: left;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: translateY(0);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity 0.2s ease;
+}
+
+.vinyl-form__submit::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 0;
+  height: 4px;
+  background: var(--gate-orange);
+  box-shadow: 0 -1px 12px rgba(255, 164, 0, 0.24);
+  transition: height 0.28s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.vinyl-form__submit-label {
+  position: relative;
+  z-index: 2;
+}
+
+.vinyl-form__submit:hover:not(:disabled),
+.vinyl-form__submit:focus-visible:not(:disabled) {
+  color: var(--gate-ink);
+  border-color: var(--gate-orange);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -3px 0 rgba(89, 49, 0, 0.24),
+    0 13px 30px rgba(0, 0, 0, 0.44);
+  text-shadow: none;
+  transform: translateY(-2px);
+}
+
+.vinyl-form__submit:hover:not(:disabled)::before,
+.vinyl-form__submit:focus-visible:not(:disabled)::before {
+  height: 100%;
+}
+
+.vinyl-form__submit:active:not(:disabled) {
+  box-shadow:
+    inset 0 3px 5px rgba(38, 29, 12, 0.34),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.34);
+  transform: translateY(2px);
+}
+
+.vinyl-form__submit:disabled {
+  cursor: wait;
+  filter: saturate(0.62);
+}
+
+.vinyl-form__coin-mark,
+.gate-flying-coin {
+  position: relative;
+  display: block;
+  border: 0;
+  border-radius: 50%;
+  color: transparent;
+  background-color: transparent;
+  background-image: url("../img/gate/coin/coin-static.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: none;
+  transform-style: preserve-3d;
+}
+
+.vinyl-form__coin-mark::before,
+.gate-flying-coin::before,
+.vinyl-form__coin-mark::after,
+.gate-flying-coin::after {
+  display: none;
+}
+
+.vinyl-form__coin-mark {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  width: 62px;
+  height: 62px;
+  filter: drop-shadow(0 6px 7px rgba(0, 0, 0, 0.48));
+  transform: translateY(-50%);
+  transition:
+    opacity 0.14s ease,
+    transform 0.28s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.vinyl-form__coin-mark span,
+.gate-flying-coin span {
+  display: none;
+}
+
+.vinyl-form__submit:hover:not(:disabled) .vinyl-form__coin-mark,
+.vinyl-form__submit:focus-visible:not(:disabled) .vinyl-form__coin-mark {
+  transform: translateY(-50%) rotate(-7deg) scale(1.08);
+}
+
+.gate-flying-coin {
+  position: fixed !important;
+  right: auto !important;
+  z-index: 12;
+  margin: 0 !important;
+  background-image: url("../img/gate/coin/coin-spin-strip.webp");
+  background-size: 2400% 100%;
+  background-position: 0 0;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.48));
+  contain: layout paint style;
+  will-change: transform, opacity, background-position;
+  animation: gate-coin-render-spin 0.72s steps(24, jump-none) 1 both;
+}
+
+@keyframes gate-coin-render-spin {
+  to { background-position: 100% 0; }
+}
+
+.vinyl-form__status {
+  min-height: 17px;
+  margin-top: 7px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.vinyl-form__status.is-error {
+  color: #ff9d93;
+}
+
+.vinyl-form__status.is-success {
+  color: var(--gate-orange);
+}
+
+.vinyl-form__submit:focus-visible {
+  outline: 3px solid var(--gate-orange);
+  outline-offset: 3px;
+}
+
+.vinyl-field input:focus-visible {
+  outline: 0;
+  border-bottom-width: 3px;
+}
+
+/* The check-in clears only after the visitor commits the coin. */
+.vinyl-gate.is-committing .vinyl-form {
+  animation: listening-pass-clear 0.48s 0.24s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.vinyl-gate.is-committing .vinyl-gate__footer {
+  opacity: 0;
+  transition: opacity 0.22s 0.3s ease;
+}
+
+@keyframes listening-pass-clear {
+  to {
+    opacity: 0;
+    transform: translate3d(-18px, 24px, 0) scale(0.985);
+  }
+}
+
+.gate-circular-wipe {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.vinyl-gate__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+}
+
+.vinyl-gate__privacy {
+  max-width: 640px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.vinyl-gate__pass {
+  flex: none;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .gate-cinema::before {
+    background:
+      linear-gradient(90deg, rgba(6, 8, 9, 0.56) 0, rgba(6, 8, 9, 0.32) 58%, rgba(6, 8, 9, 0.08) 100%),
+      linear-gradient(0deg, rgba(6, 8, 9, 0.62) 0, rgba(6, 8, 9, 0.26) 38%, rgba(6, 8, 9, 0.08) 72%, transparent 100%);
+  }
+
+  .vinyl-gate__stage {
+    padding-bottom: clamp(40px, 6vh, 68px);
+  }
+
+  .vinyl-form {
+    width: min(672px, 78vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .gate-slot-anchor {
+    top: 48.8%;
+    left: 72.6%;
+  }
+
+  .gate-record-anchor {
+    top: 52%;
+  }
+
+  .vinyl-gate__shell {
+    width: calc(100% - 40px);
+  }
+
+  .vinyl-form {
+    width: calc(100% + 16px);
+    margin-left: -8px;
+    padding: 28px 24px 24px;
+  }
+
+  .vinyl-form::before {
+    inset: -14px -20px -18px;
+    background: rgba(4, 6, 7, 0.3);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    -webkit-mask-image: radial-gradient(ellipse 90% 90% at 36% 52%, #000 0 56%, rgba(0, 0, 0, 0.74) 74%, transparent 100%);
+    mask-image: radial-gradient(ellipse 90% 90% at 36% 52%, #000 0 56%, rgba(0, 0, 0, 0.74) 74%, transparent 100%);
+  }
+
+  .vinyl-gate.is-committing .vinyl-form {
+    animation-name: listening-pass-clear-mobile;
+  }
+
+  @keyframes listening-pass-clear-mobile {
+    to {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0) scale(0.98);
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .vinyl-gate__shell {
+    width: calc(100% - 32px);
+    grid-template-rows: minmax(0, 1fr) auto;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .vinyl-gate__stage {
+    padding-bottom: 28px;
+  }
+
+  .vinyl-form {
+    padding: 26px 22px 22px;
+  }
+
+  .vinyl-pass__head {
+    grid-template-columns: minmax(0, 1fr) 76px;
+    gap: 18px;
+  }
+
+  .vinyl-pass__title {
+    font-size: clamp(3.3rem, 14.5vw, 4.5rem);
+  }
+
+  .vinyl-pass__prompt {
+    max-width: 34ch;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+
+  .vinyl-pass__hook {
+    margin-top: 8px;
+    font-size: 18px;
+  }
+
+  .vinyl-pass__instruction {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .vinyl-form__fields {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 14px;
+  }
+
+  .vinyl-field label {
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .vinyl-field input {
+    min-height: 40px;
+  }
+
+  .vinyl-field__error {
+    min-height: 15px;
+  }
+
+  .vinyl-form__submit {
+    min-height: 58px;
+    margin-top: 14px;
+  }
+
+  .vinyl-form__coin-mark {
+    width: 58px;
+    height: 58px;
+  }
+
+  .vinyl-gate__privacy {
+    max-width: 30ch;
+    font-size: 11px;
+  }
+
+  .vinyl-gate__pass {
+    max-width: 128px;
+    text-align: right;
+  }
+}
+
+@media (max-width: 390px) {
+  .vinyl-pass__prompt {
+    max-width: 29ch;
+  }
+
+  .vinyl-form {
+    width: calc(100% + 12px);
+    margin-left: -6px;
+    padding-inline: 20px;
+  }
+
+  .vinyl-gate__privacy {
+    max-width: 25ch;
+  }
+}
+
+@media (max-height: 720px) {
+  .vinyl-gate__stage {
+    padding-bottom: 18px;
+  }
+
+  .vinyl-form {
+    padding-block: 18px 16px;
+  }
+
+  .vinyl-pass__prompt {
+    margin-top: 12px;
+  }
+
+  .vinyl-form__fields {
+    margin-top: 14px;
+    padding-top: 9px;
+  }
+
+  .vinyl-form__submit {
+    min-height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vinyl-gate,
+  .gate-cinema,
+  .gate-cinema::before,
+  .gate-cinema::after,
+  .gate-cinema__video,
+  .vinyl-form__submit,
+  .vinyl-form__coin-mark,
+  .vinyl-field input,
+  .vinyl-field label {
+    transition-duration: 0.01ms !important;
+  }
+
+  .vinyl-gate.is-committing .vinyl-form {
+    animation: none;
+  }
+}

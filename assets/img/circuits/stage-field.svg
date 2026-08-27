@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none" shape-rendering="geometricPrecision">
+  <g stroke="#fff" stroke-width="0.75" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke" opacity="0.42">
+    <path d="M0 92h68l18 18h108l24 24h146"/>
+    <path d="M0 126h126l18 18h74"/>
+    <path d="M0 254h50l20-20h92l22 22h90"/>
+    <path d="M0 388h92l18-18h126l24 24h92"/>
+    <path d="M0 452h52l22 22h134"/>
+    <path d="M0 606h60l18 18h112l22-22h88"/>
+    <path d="M0 752h80l20-20h136l24-24h110"/>
+    <path d="M0 808h46l22 22h94"/>
+    <path d="M1440 76h-84l-20 20h-104l-24 24h-142"/>
+    <path d="M1440 188h-64l-18 18h-116l-24 24h-114"/>
+    <path d="M1440 286h-92l-20-20h-96l-24 24h-106"/>
+    <path d="M1440 446h-60l-22 22h-112l-22-22h-92"/>
+    <path d="M1440 548h-90l-20 20h-136l-26-26h-116"/>
+    <path d="M1440 636h-46l-20-20h-116l-24 24h-126"/>
+    <path d="M1440 812h-70l-22-22h-110l-22-22h-112"/>
+    <path d="M118 900v-42l20-20v-92l20-20v-62"/>
+    <path d="M292 900v-70l18-18v-98"/>
+    <path d="M1110 900v-66l-18-18v-102"/>
+    <path d="M1326 900v-48l-20-20v-94l-18-18v-70"/>
+    <path d="M482 0v58l18 18v92l26 26v82"/>
+    <path d="M712 0v80l-22 22v106"/>
+    <path d="M958 0v64l-20 20v118"/>
+    <path d="M534 900v-54l-18-18v-88"/>
+    <path d="M826 900v-46l22-22v-96"/>
+  </g>
+  <g stroke="#fff" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke" opacity="0.7">
+    <path d="M0 154h104l34 34h148l34 34h104"/>
+    <path d="M0 310h72l30-30h116"/>
+    <path d="M0 518h124l28 28h138l32-32h94"/>
+    <path d="M0 664h92l32-32h186l38-38h118"/>
+    <path d="M1440 116h-116l-34 34h-174l-36 36H966"/>
+    <path d="M1440 356h-86l-32 32h-138"/>
+    <path d="M1440 504h-118l-28-28h-142l-30 30H1014"/>
+    <path d="M1440 726h-112l-38-38h-174l-40-40H930"/>
+    <path d="M190 900v-62l32-32v-76"/>
+    <path d="M1228 900v-58l-34-34v-72"/>
+  </g>
+  <g stroke="#fff" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke" opacity="0.94">
+    <path d="M0 220h134l34 34h178l38 38h92"/>
+    <path d="M0 700h116l36-36h208l42-42h76"/>
+    <path d="M1440 150h-112l-38 38h-190l-40 40h-82"/>
+    <path d="M1440 760h-130l-38-38h-196l-42-42h-92"/>
+  </g>
+  <g stroke="#fff" fill="none" vector-effect="non-scaling-stroke">
+    <g stroke-width="0.75" opacity="0.48">
+      <rect x="364" y="128" width="12" height="12"/><rect x="352" y="388" width="12" height="12"/>
+      <rect x="300" y="596" width="12" height="12"/><rect x="1054" y="114" width="12" height="12"/>
+      <rect x="1090" y="284" width="12" height="12"/><rect x="1096" y="634" width="12" height="12"/>
+      <rect x="684" y="208" width="12" height="12"/><rect x="510" y="728" width="12" height="12"/>
+    </g>
+    <g stroke-width="1.5" opacity="0.74">
+      <rect x="424" y="209" width="26" height="26"/><rect x="218" y="268" width="24" height="24"/>
+      <rect x="466" y="581" width="26" height="26"/><rect x="940" y="173" width="26" height="26"/>
+      <rect x="1160" y="376" width="24" height="24"/><rect x="902" y="634" width="28" height="28"/>
+    </g>
+    <g stroke-width="3" opacity="0.96">
+      <rect x="476" y="278" width="28" height="28"/><rect x="950" y="214" width="28" height="28"/>
+      <rect x="478" y="607" width="30" height="30"/><rect x="912" y="665" width="30" height="30"/>
+    </g>
+  </g>
+  <g fill="#fff" opacity="0.58">
+    <rect x="1124" y="442" width="8" height="8"/><rect x="306" y="706" width="8" height="8"/>
+    <rect x="1044" y="538" width="8" height="8"/><rect x="1096" y="764" width="8" height="8"/>
+  </g>
+</svg>

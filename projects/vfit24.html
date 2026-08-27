@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>document.documentElement.classList.add(/(?:^|;\s*)joe_portfolio_access=1(?:;|$)/.test(document.cookie) ? "access-granted" : "access-pending");</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>V-FIT24 — Pay by the Minute · Joe Chan</title>
+    <meta
+      name="description"
+      content="Case study: turning HK$1-per-minute pricing into a viable 24-hour self-service gym ecosystem — launched across three Hong Kong locations and generating HK$5,000 in average monthly incremental revenue."
+    />
+    <link rel="icon" href="../assets/img/logo-j.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/access.css" />
+    <script src="../assets/js/access.js" defer></script>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="container nav-inner">
+        <div class="nav-left">
+          <a href="../index.html">home</a>
+          <a href="../index.html#work">work</a>
+          <a href="../index.html#about">about</a>
+        </div>
+        <div class="nav-hello" aria-hidden="true">
+          <span>J</span><span>O</span><span>E</span><span>'</span><span>S</span
+          ><i class="nav-word-gap"></i><span>P</span><span>O</span><span>R</span
+          ><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span
+          ><span>O</span>
+        </div>
+        <div class="nav-right">
+          <a href="mailto:joechanwainam@gmail.com">contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main data-surface="light">
+      <section class="case-hero">
+        <div class="container">
+          <span class="case-kicker">V-FIT24 · Fitness · Product ecosystem</span>
+          <h1 class="case-title">Designing fairness into a self-service gym.</h1>
+          <p class="case-intro">
+            The owner set a simple proposition: charge HK$1 per minute. As the
+            UX/UI Designer and Product Manager, I turned that direction into the
+            rules, priorities and recovery flows needed to run a 24-hour gym —
+            across members, Customer Service Operations and management.
+          </p>
+          <div class="case-meta">
+            <div>
+              <span class="meta-label">Role</span>
+              <p>UX/UI Designer · Product Manager</p>
+            </div>
+            <div>
+              <span class="meta-label">Platform</span>
+              <p>Member app + CS operations + management</p>
+            </div>
+            <div>
+              <span class="meta-label">Scope</span>
+              <p>Requirements · MVP · business rules · UX/UI</p>
+            </div>
+            <div>
+              <span class="meta-label">Status</span>
+              <p>Launched 2025 · 3 Hong Kong locations</p>
+            </div>
+          </div>
+          <a class="flow-library-link" href="flows.html?case=vfit24">
+            <span>Explore the screen-flow library</span>
+            <span aria-hidden="true">View flow →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container">
+          <h2 class="reveal">The problem</h2>
+          <div class="case-body reveal">
+            <p>
+              HK$1-per-minute pricing sounds simple until the gym has no staff
+              at the door. The product has to know when a member enters and
+              leaves, cap longer sessions fairly, and recover when an OTP,
+              network request or access record fails — without losing member
+              trust or revenue.
+            </p>
+            <p class="case-quote">
+              How might we make a 24/7 self-service gym operationally viable by
+              connecting access, minute-based billing and human recovery in one
+              product ecosystem?
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-section--flush">
+        <div class="container">
+          <h2 class="reveal">What I did</h2>
+          <div class="case-body reveal">
+            <h3>Product strategy — protect the operating loop</h3>
+            <ul>
+              <li>
+                Used stakeholder-led operational discovery with the owner,
+                Customer Service Operations, management and the development
+                team to turn the commercial proposition into product rules
+              </li>
+              <li>
+                Co-defined the pricing guardrail with the owner: HK$1 per minute,
+                capped at a HK$120 Day Pass after two hours
+              </li>
+              <li>
+                Prioritised registration, wallet, access, live minute tracking,
+                checkout and exception recovery for the 2025 MVP; deliberately
+                deferred trainer booking
+              </li>
+            </ul>
+            <h3>Member app — automate the happy path</h3>
+            <ul>
+              <li>
+                Made the flexible plan tangible through wallet top-up, QR
+                unlock, a manual entry-code fallback, live usage time and a
+                checkout that explains the Day Pass cap before charging. Login
+                recovery allows one additional WhatsApp OTP resend before a
+                clear handoff to human Customer Service
+              </li>
+            </ul>
+            <h3>Customer Service Operations — recover the exceptions</h3>
+            <ul>
+              <li>
+                When API or network synchronisation breaks the access record,
+                Customer Service can remotely unlock the door and record the
+                correct entry time. Fee appeals continue the same recovery
+                operation: Customer Service checks CCTV and system logs, accepts
+                or rejects the appeal, corrects the time or fee when justified,
+                and notifies the member
+              </li>
+            </ul>
+            <h3>Management — see the business across locations</h3>
+            <ul>
+              <li>
+                Separated management oversight from case handling, giving
+                decision-makers a cross-location view of revenue, usage and
+                member activity while Customer Service owns daily recovery work
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="design-snapshot"
+        aria-labelledby="vfit-snapshot-title"
+        data-surface="dark"
+        style="--snapshot-signal: #08b9df"
+      >
+        <div class="snapshot-inner">
+          <div class="snapshot-head reveal">
+            <h2 id="vfit-snapshot-title">Making minute-based pricing predictable.</h2>
+            <p>
+              The strongest screens explain the operating model before asking
+              members to trust it with access or money.
+            </p>
+          </div>
+          <div class="snapshot-board reveal">
+            <figure class="snapshot-frame snapshot-frame--portrait">
+              <div class="snapshot-media">
+                <img
+                  width="430"
+                  height="889"
+                  src="../assets/img/vfit-home.png"
+                  alt="V-FIT24 member home showing door access and three pricing options"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="A">
+                <span><strong>One operational home.</strong> Door access and per-minute, monthly and annual options sit in one hierarchy, so flexibility does not feel like hidden complexity.</span>
+              </figcaption>
+            </figure>
+            <figure class="snapshot-frame snapshot-frame--detail snapshot-frame--portrait">
+              <div class="snapshot-media">
+                <img
+                  width="430"
+                  height="890"
+                  src="../assets/img/vfit-topup.png"
+                  alt="V-FIT24 top-up interface translating Hong Kong dollars into gym minutes"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption data-mark="B">
+                <span><strong>Make the exchange explicit.</strong> The top-up state translates money into usable minutes before payment, reducing ambiguity at the most transactional moment.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-section--flush">
+        <div class="container">
+          <h2 class="reveal">The outcomes</h2>
+          <div class="case-body reveal">
+            <ul>
+              <li>
+                <strong>HK$5,000 average monthly incremental revenue</strong>
+                generated by the pay-by-minute feature after launch, according
+                to internal business data
+              </li>
+              <li>
+                <strong>Launched in 2025 across three Hong Kong locations</strong>
+                — Kwai Chung EDGE, Yuen Long and Kwun Tong Eastcore
+              </li>
+              <li>
+                <strong>One connected operating model shipped</strong> — members
+                complete the normal journey independently, Customer Service
+                recovers exceptions, and management monitors the business across
+                locations
+              </li>
+            </ul>
+            <img width="329" height="347" style="max-width: 280px" src="../assets/img/vfit-locations.png" alt="Three locations: Kwun Tong Eastcore, Yuen Long and Kwai Chung EDGE" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="case-next">
+        <span class="label">Next case study</span>
+        <a href="read-tongue.html">Read Tongue Online — Tongue diagnosis →</a>
+      </section>
+    </main>
+
+    <footer class="contact">
+      <div class="contact-dots" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span
+        ><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="seeyou" aria-hidden="true">
+        <span class="s1">S</span><span class="s2">E</span
+        ><span class="s3">E</span><span class="s4">Y</span
+        ><span class="s5">O</span><span class="s6">U</span>
+      </div>
+      <div class="container">
+        <div class="contact-cols">
+          <div>
+            <h2 class="label">Thank you</h2>
+            <p class="contact-msg">
+              Welcome to reach out with any questions, project inquiries &amp;
+              collaborations.
+              <a href="mailto:joechanwainam@gmail.com"
+                >joechanwainam@gmail.com</a
+              >
+            </p>
+          </div>
+          <div class="contact-social">
+            <h2 class="label">Keep in touch</h2>
+            <a
+              href="https://www.linkedin.com/in/joechanuiux"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="https://medium.com/@joechanwainam"
+              target="_blank"
+              rel="noopener"
+              >Medium</a
+            >
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span
+            >All rights reserved · <span id="year">2026</span> · Joe Chan</span
+          >
+          <span>Full portfolio with NDA work on request</span>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
