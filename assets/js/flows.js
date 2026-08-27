@@ -4,7 +4,7 @@
   var PROJECTS = {
     crm: {
       title: "好大個網 CRM",
-      kicker: "Audience to Action · Decision-system evidence",
+      kicker: "Audience to Action · Decision system",
       intro:
         "This archive follows the product from the management dashboard into campaign operations, audience selection and member-level detail. Screens are captured from the working prototype; member-level values are mock data.",
       back: "crm.html",
@@ -105,7 +105,7 @@
     },
     aapoakgy: {
       title: "AAPOAKGY",
-      kicker: "From Brand to Checkout · Live product evidence",
+      kicker: "From Brand to Checkout · Live surfaces",
       intro:
         "A growing archive of the live brand and product-evaluation journey. Current captures cover entry, browse logic and the exact-specimen detail that supports a considered purchase.",
       back: "aapoakgy.html",
@@ -152,12 +152,12 @@
     },
     edmondpoon: {
       title: "edmondpoon.com",
-      kicker: "Horror Online & Beyond · Source evidence",
+      kicker: "Horror Online & Beyond · Platform reach",
       intro:
         "The current archive starts with Horror Online, then shows the genuine programme, participation and commerce evidence behind the wider platform. Raw episode, chat and service screens can extend these groups as they become available.",
       back: "edmondpoon.html",
       accent: "#be1522",
-      coverage: "5 genuine source assets",
+      coverage: "5 source assets",
       groups: [
         {
           title: "Horror Online first, connected layers around it",
@@ -287,7 +287,7 @@
     },
     bba: {
       title: "BigBigAir Aura Reading",
-      kicker: "Scan to Report · Service evidence",
+      kicker: "Scan to Report · Input and outcomes",
       intro:
         "The palm scanner is the input; the two report variants are what the customer walks away with.",
       back: "bba.html",
@@ -403,7 +403,7 @@
     },
     aldi: {
       title: "ALDI E-commerce",
-      kicker: "Online Grocery · Prototype evidence",
+      kicker: "Online Grocery · Prototype overview",
       intro:
         "The current archive records the tested online-shopping direction and its physical-retail context. Raw mobile prototype exports can later expand this into browse, basket, fulfilment and checkout sequences.",
       back: "aldi.html",
@@ -439,6 +439,11 @@
     "edmondpoon",
     "vfit24",
     "read-tongue",
+    "bba",
+    "divit-miles",
+    "divit-website",
+    "twgh",
+    "aldi",
   ];
 
   var params = new URLSearchParams(window.location.search);
