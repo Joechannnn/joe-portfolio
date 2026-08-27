@@ -55,6 +55,8 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 .vinyl-gate {
   --gate-ink: var(--ink, #0b0e0f);
   --gate-orange: var(--orange, #ffa400);
+  --gate-wine: #421026;
+  --gate-paper: #f4f1ec;
   position: fixed;
   inset: 0;
   z-index: 9000;
@@ -134,8 +136,8 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 .gate-cinema::before {
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(6, 8, 9, 0.68) 0, rgba(6, 8, 9, 0.36) 38%, transparent 61%),
-    linear-gradient(0deg, rgba(6, 8, 9, 0.36), transparent 48%);
+    linear-gradient(90deg, rgba(8, 10, 11, 0.9) 0, rgba(29, 8, 17, 0.7) 34%, rgba(8, 10, 11, 0.24) 58%, transparent 76%),
+    linear-gradient(0deg, rgba(6, 8, 9, 0.48), transparent 52%);
 }
 
 .gate-cinema::after {
@@ -162,8 +164,8 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .gate-slot-anchor {
   /* JS refines this fallback against the source-film crop. */
-  top: 48.4%;
-  left: 70.2%;
+  top: 49%;
+  left: 69%;
   width: 4px;
   height: 44px;
 }
@@ -181,60 +183,122 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 .vinyl-gate__shell {
   position: relative;
   z-index: 3;
-  width: min(1280px, calc(100% - 48px));
+  width: 100%;
+  max-width: 1440px;
+  height: 100svh;
   min-height: 100svh;
   margin-inline: auto;
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
-  padding-bottom: max(22px, env(safe-area-inset-bottom));
+  padding:
+    max(28px, env(safe-area-inset-top))
+    clamp(36px, 5.6vw, 82px)
+    max(22px, env(safe-area-inset-bottom));
 }
 
 .vinyl-gate__stage {
   min-height: 0;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: clamp(54px, 9vh, 108px);
+  align-items: center;
+  padding-block: clamp(30px, 5.5vh, 64px) clamp(22px, 4vh, 44px);
 }
 
-/* ---------- Editorial check-in — part of the scene, never a UI card ---------- */
+/* ---------- An invitation within the listening booth, not a UI card ---------- */
 
 .vinyl-form {
   position: relative;
-  width: min(736px, 58vw);
-  margin-left: -36px;
-  padding: 34px 36px 30px;
-  color: #fff;
+  width: min(680px, 56vw);
+  margin: 0;
+  padding:
+    clamp(38px, 5vh, 58px)
+    clamp(34px, 4vw, 56px)
+    clamp(34px, 4.5vh, 50px);
+  color: var(--gate-paper);
   background: transparent;
   isolation: isolate;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.66);
+  animation: gate-invitation-arrive 0.48s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)) backwards;
+}
+
+@keyframes gate-invitation-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(-10px, 16px, 0);
+  }
 }
 
 .vinyl-form::before {
   content: "";
   position: absolute;
-  inset: -22px -44px -26px -38px;
-  z-index: -1;
-  background: rgba(4, 6, 7, 0.58);
-  -webkit-backdrop-filter: blur(9px) brightness(0.82) saturate(0.82);
-  backdrop-filter: blur(9px) brightness(0.82) saturate(0.82);
-  -webkit-mask-image: radial-gradient(ellipse 88% 84% at 32% 52%, #000 0 58%, rgba(0, 0, 0, 0.78) 72%, transparent 100%);
-  mask-image: radial-gradient(ellipse 88% 84% at 32% 52%, #000 0 58%, rgba(0, 0, 0, 0.78) 72%, transparent 100%);
+  inset: -46px -144px -50px -68px;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 70% 76% at 24% 48%, rgba(66, 16, 38, 0.68) 0, rgba(29, 10, 18, 0.62) 34%, rgba(5, 7, 8, 0.78) 62%, transparent 84%);
+  -webkit-backdrop-filter: blur(12px) brightness(0.78) saturate(0.86);
+  backdrop-filter: blur(12px) brightness(0.78) saturate(0.86);
+  -webkit-mask-image: radial-gradient(ellipse 84% 88% at 28% 50%, #000 0 54%, rgba(0, 0, 0, 0.84) 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 84% 88% at 28% 50%, #000 0 54%, rgba(0, 0, 0, 0.84) 68%, transparent 100%);
   pointer-events: none;
 }
 
+.vinyl-form::after {
+  content: "";
+  position: absolute;
+  left: -190px;
+  bottom: -250px;
+  z-index: -1;
+  width: min(540px, 46vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0.42;
+  background:
+    radial-gradient(circle, transparent 0 12%, rgba(255, 164, 0, 0.1) 12.2% 12.6%, transparent 12.8%),
+    repeating-radial-gradient(circle, transparent 0 11px, rgba(255, 255, 255, 0.055) 11.5px 12.5px);
+  -webkit-mask-image: linear-gradient(0deg, #000 0, rgba(0, 0, 0, 0.7) 42%, transparent 78%);
+  mask-image: linear-gradient(0deg, #000 0, rgba(0, 0, 0, 0.7) 42%, transparent 78%);
+  pointer-events: none;
+}
+
+.vinyl-pass__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(244, 241, 236, 0.26);
+  color: rgba(244, 241, 236, 0.68);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.vinyl-pass__topline span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vinyl-pass__topline span:first-child::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: none;
+  background: var(--gate-orange);
+  box-shadow: 0 0 14px rgba(255, 164, 0, 0.42);
+}
+
 .vinyl-pass__head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 108px;
-  align-items: end;
-  gap: 32px;
+  display: block;
 }
 
 .vinyl-pass__title {
-  margin: 0;
-  font-size: clamp(3.8rem, 6.2vw, 5.8rem);
+  margin: clamp(24px, 3.4vh, 38px) 0 0;
+  font-size: clamp(4.15rem, 6.5vw, 6.4rem);
   font-weight: 500;
-  line-height: 0.76;
-  letter-spacing: -0.035em;
+  line-height: 0.75;
+  letter-spacing: -0.045em;
   text-wrap: balance;
 }
 
@@ -244,67 +308,79 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 }
 
 .vinyl-pass__title em {
-  margin-left: 0.5em;
+  margin-left: 0.42em;
   font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
-  font-size: 1.08em;
+  font-size: 1.02em;
   font-style: italic;
   font-weight: 400;
 }
 
-.vinyl-pass__side {
-  max-width: 108px;
-  padding-bottom: 6px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0.14em;
-  text-align: right;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
-  text-transform: uppercase;
-}
-
 .vinyl-pass__prompt {
-  max-width: 570px;
-  margin-top: 24px;
-  color: rgba(255, 255, 255, 0.78);
+  max-width: 560px;
+  margin-top: clamp(26px, 3.8vh, 38px);
+  color: rgba(244, 241, 236, 0.78);
   font-family: var(--font-sans, "Archivo", sans-serif);
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
-  line-height: 1.45;
+  line-height: 1.58;
 }
 
 .vinyl-pass__identity,
 .vinyl-pass__hook,
-.vinyl-pass__instruction {
+.vinyl-pass__invitation {
   display: block;
 }
 
 .vinyl-pass__hook {
-  max-width: 540px;
-  margin-top: 10px;
-  color: #fff;
-  font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
-  font-size: 22px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.22;
+  max-width: 520px;
+  margin-top: 12px;
+  color: var(--gate-paper);
+  font-family: var(--font-sans, "Archivo", sans-serif);
+  font-size: clamp(17px, 1.38vw, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.42;
+  letter-spacing: -0.012em;
 }
 
-.vinyl-pass__instruction {
+.vinyl-pass__invitation {
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 14px;
-  line-height: 1.4;
+  color: rgba(244, 241, 236, 0.9);
+  font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
+  font-size: clamp(20px, 1.75vw, 25px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.24;
+}
+
+.vinyl-form__fields-intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin: clamp(28px, 4vh, 42px) 0 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(244, 241, 236, 0.38);
+  color: var(--gate-paper);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.vinyl-form__fields-intro span:last-child {
+  color: rgba(244, 241, 236, 0.56);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
 }
 
 .vinyl-form__fields {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: 28px;
-  margin-top: 30px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.42);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 26px;
+  margin-top: 14px;
 }
 
 .vinyl-field {
@@ -313,24 +389,25 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .vinyl-field label {
   display: block;
-  margin-bottom: 2px;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 10px;
+  margin-bottom: 3px;
+  color: rgba(244, 241, 236, 0.66);
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  line-height: 1.3;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   transition: color 0.18s ease;
 }
 
 .vinyl-field input {
   width: 100%;
-  min-height: 44px;
-  padding: 5px 0 8px;
+  min-height: 48px;
+  padding: 7px 0 10px;
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+  border-bottom: 1px solid rgba(244, 241, 236, 0.62);
   border-radius: 0;
   outline: 0;
-  color: #fff;
+  color: var(--gate-paper);
   background: transparent;
   font: 500 16px/1.25 var(--font-sans, "Archivo", sans-serif);
   transition: border-color 0.18s ease;
@@ -338,7 +415,7 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 }
 
 .vinyl-field input::placeholder {
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(244, 241, 236, 0.5);
 }
 
 .vinyl-field:focus-within label {
@@ -360,7 +437,7 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .vinyl-field__error {
   min-height: 17px;
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   font-size: 11px;
   line-height: 1.35;
   visibility: hidden;
@@ -380,24 +457,26 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .vinyl-form__submit {
   position: relative;
-  width: min(440px, 100%);
-  min-height: 64px;
-  margin-top: 20px;
-  padding: 16px 90px 16px 18px;
+  width: min(560px, 100%);
+  min-height: 68px;
+  margin-top: 18px;
+  padding: 18px 96px 18px 22px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(244, 241, 236, 0.58);
   border-radius: 0;
-  color: #fff;
-  background: linear-gradient(180deg, rgba(31, 34, 34, 0.97) 0%, rgba(8, 11, 11, 0.99) 100%);
+  color: var(--gate-paper);
+  background:
+    linear-gradient(118deg, rgba(66, 16, 38, 0.82) 0, rgba(29, 22, 25, 0.96) 44%, rgba(8, 11, 11, 0.99) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    inset 0 -3px 0 rgba(0, 0, 0, 0.72),
-    0 10px 26px rgba(0, 0, 0, 0.4);
-  font: 600 11px/1.2 var(--font-sans, "Archivo", sans-serif);
-  letter-spacing: 0.17em;
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.72),
+    0 16px 36px rgba(0, 0, 0, 0.44);
+  font: 600 12px/1.25 var(--font-sans, "Archivo", sans-serif);
+  letter-spacing: 0.15em;
   text-align: left;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
   text-transform: uppercase;
+  touch-action: manipulation;
   cursor: pointer;
   transform: translateY(0);
   transition:
@@ -412,12 +491,13 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 .vinyl-form__submit::before {
   content: "";
   position: absolute;
-  inset: auto 0 0;
+  inset: 0;
   z-index: 0;
-  height: 4px;
   background: var(--gate-orange);
   box-shadow: 0 -1px 12px rgba(255, 164, 0, 0.24);
-  transition: height 0.28s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+  transform: scaleY(0.07);
+  transform-origin: bottom;
+  transition: transform 0.28s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
 .vinyl-form__submit-label {
@@ -439,7 +519,7 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .vinyl-form__submit:hover:not(:disabled)::before,
 .vinyl-form__submit:focus-visible:not(:disabled)::before {
-  height: 100%;
+  transform: scaleY(1);
 }
 
 .vinyl-form__submit:active:not(:disabled) {
@@ -481,9 +561,9 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 .vinyl-form__coin-mark {
   position: absolute;
   top: 50%;
-  right: 3px;
-  width: 62px;
-  height: 62px;
+  right: 4px;
+  width: 64px;
+  height: 64px;
   filter: drop-shadow(0 6px 7px rgba(0, 0, 0, 0.48));
   transform: translateY(-50%);
   transition:
@@ -522,9 +602,9 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .vinyl-form__status {
   min-height: 17px;
-  margin-top: 7px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 11px;
+  margin-top: 9px;
+  color: rgba(244, 241, 236, 0.7);
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -574,42 +654,51 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 
 .vinyl-gate__footer {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
+  min-height: 30px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+  animation: gate-footer-arrive 0.38s 0.16s ease-out backwards;
+}
+
+@keyframes gate-footer-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
 }
 
 .vinyl-gate__privacy {
   max-width: 640px;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(244, 241, 236, 0.68);
   font-size: 12px;
   line-height: 1.5;
 }
 
 .vinyl-gate__pass {
   flex: none;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 11px;
-  font-weight: 500;
+  color: rgba(244, 241, 236, 0.7);
+  font-size: 10px;
+  font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 @media (max-width: 900px) {
   .gate-cinema::before {
     background:
-      linear-gradient(90deg, rgba(6, 8, 9, 0.56) 0, rgba(6, 8, 9, 0.32) 58%, rgba(6, 8, 9, 0.08) 100%),
-      linear-gradient(0deg, rgba(6, 8, 9, 0.62) 0, rgba(6, 8, 9, 0.26) 38%, rgba(6, 8, 9, 0.08) 72%, transparent 100%);
+      linear-gradient(90deg, rgba(8, 10, 11, 0.88) 0, rgba(42, 10, 24, 0.64) 56%, rgba(8, 10, 11, 0.16) 100%),
+      linear-gradient(0deg, rgba(6, 8, 9, 0.58) 0, rgba(6, 8, 9, 0.22) 50%, transparent 100%);
   }
 
-  .vinyl-gate__stage {
-    padding-bottom: clamp(40px, 6vh, 68px);
+  .vinyl-gate__shell {
+    padding-inline: clamp(28px, 4vw, 44px);
   }
 
   .vinyl-form {
-    width: min(672px, 78vw);
+    width: min(660px, 74vw);
   }
 }
 
@@ -624,22 +713,29 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
   }
 
   .vinyl-gate__shell {
-    width: calc(100% - 40px);
+    padding:
+      max(22px, env(safe-area-inset-top))
+      24px
+      max(18px, env(safe-area-inset-bottom));
+  }
+
+  .vinyl-gate__stage {
+    padding-block: 24px 18px;
   }
 
   .vinyl-form {
-    width: calc(100% + 16px);
-    margin-left: -8px;
-    padding: 28px 24px 24px;
+    width: min(620px, 100%);
+    padding: 34px 30px 28px;
   }
 
   .vinyl-form::before {
-    inset: -14px -20px -18px;
-    background: rgba(4, 6, 7, 0.3);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    -webkit-mask-image: radial-gradient(ellipse 90% 90% at 36% 52%, #000 0 56%, rgba(0, 0, 0, 0.74) 74%, transparent 100%);
-    mask-image: radial-gradient(ellipse 90% 90% at 36% 52%, #000 0 56%, rgba(0, 0, 0, 0.74) 74%, transparent 100%);
+    inset: -24px -44px -30px;
+    background:
+      radial-gradient(ellipse 84% 82% at 32% 52%, rgba(66, 16, 38, 0.64) 0, rgba(8, 10, 11, 0.72) 62%, transparent 92%);
+    -webkit-backdrop-filter: blur(7px) brightness(0.76);
+    backdrop-filter: blur(7px) brightness(0.76);
+    -webkit-mask-image: radial-gradient(ellipse 92% 92% at 34% 52%, #000 0 58%, rgba(0, 0, 0, 0.78) 76%, transparent 100%);
+    mask-image: radial-gradient(ellipse 92% 92% at 34% 52%, #000 0 58%, rgba(0, 0, 0, 0.78) 76%, transparent 100%);
   }
 
   .vinyl-gate.is-committing .vinyl-form {
@@ -655,123 +751,239 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
 }
 
 @media (max-width: 520px) {
+  .gate-cinema::before {
+    background:
+      linear-gradient(0deg, rgba(6, 8, 9, 0.84) 0, rgba(34, 9, 20, 0.54) 55%, rgba(6, 8, 9, 0.46) 100%),
+      linear-gradient(90deg, rgba(6, 8, 9, 0.66), rgba(6, 8, 9, 0.18));
+  }
+
   .vinyl-gate__shell {
-    width: calc(100% - 32px);
     grid-template-rows: minmax(0, 1fr) auto;
-    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    padding:
+      max(16px, env(safe-area-inset-top))
+      16px
+      max(14px, env(safe-area-inset-bottom));
   }
 
   .vinyl-gate__stage {
-    padding-bottom: 28px;
+    padding-block: 12px 10px;
   }
 
   .vinyl-form {
-    padding: 26px 22px 22px;
+    width: 100%;
+    padding: 28px 14px 20px;
   }
 
-  .vinyl-pass__head {
-    grid-template-columns: minmax(0, 1fr) 76px;
-    gap: 18px;
+  .vinyl-form::before {
+    inset: -14px -12px -20px -24px;
+    background:
+      radial-gradient(ellipse 96% 90% at 34% 50%, rgba(66, 16, 38, 0.6) 0, rgba(6, 8, 9, 0.7) 68%, transparent 100%);
+    -webkit-backdrop-filter: blur(5px) brightness(0.74);
+    backdrop-filter: blur(5px) brightness(0.74);
+  }
+
+  .vinyl-form::after {
+    left: -148px;
+    bottom: -206px;
+    width: 350px;
+    opacity: 0.34;
+  }
+
+  .vinyl-pass__topline {
+    gap: 12px;
+    padding-bottom: 11px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .vinyl-pass__topline span:first-child {
+    gap: 8px;
   }
 
   .vinyl-pass__title {
-    font-size: clamp(3.3rem, 14.5vw, 4.5rem);
+    margin-top: 20px;
+    font-size: clamp(3.55rem, 16vw, 4.2rem);
+    line-height: 0.77;
   }
 
   .vinyl-pass__prompt {
-    max-width: 34ch;
+    max-width: none;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .vinyl-pass__hook {
-    margin-top: 8px;
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 17px;
+    line-height: 1.4;
   }
 
-  .vinyl-pass__instruction {
-    margin-top: 12px;
-    font-size: 13px;
+  .vinyl-pass__invitation {
+    margin-top: 10px;
+    font-size: 21px;
+  }
+
+  .vinyl-form__fields-intro {
+    display: grid;
+    gap: 3px;
+    margin-top: 22px;
+    padding-top: 11px;
+    font-size: 10px;
+    letter-spacing: 0.11em;
+  }
+
+  .vinyl-form__fields-intro span:last-child {
+    font-size: 9px;
   }
 
   .vinyl-form__fields {
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    gap: 12px;
-    margin-top: 24px;
-    padding-top: 14px;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin-top: 10px;
   }
 
   .vinyl-field label {
-    font-size: 9.5px;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
+    font-size: 10px;
+    letter-spacing: 0.11em;
   }
 
   .vinyl-field input {
-    min-height: 40px;
+    min-height: 48px;
   }
 
   .vinyl-field__error {
-    min-height: 15px;
+    min-height: 14px;
+    margin-top: 2px;
   }
 
   .vinyl-form__submit {
-    min-height: 58px;
-    margin-top: 14px;
+    min-height: 62px;
+    margin-top: 12px;
+    padding-left: 16px;
+    font-size: 11px;
+    letter-spacing: 0.13em;
   }
 
   .vinyl-form__coin-mark {
-    width: 58px;
-    height: 58px;
+    width: 57px;
+    height: 57px;
   }
 
   .vinyl-gate__privacy {
-    max-width: 30ch;
-    font-size: 11px;
+    max-width: 25ch;
+    font-size: 10px;
+    line-height: 1.4;
   }
 
   .vinyl-gate__pass {
-    max-width: 128px;
+    max-width: 104px;
+    font-size: 9px;
+    line-height: 1.35;
     text-align: right;
   }
 }
 
 @media (max-width: 390px) {
-  .vinyl-pass__prompt {
-    max-width: 29ch;
+  .vinyl-gate__shell {
+    padding-inline: 12px;
   }
 
   .vinyl-form {
-    width: calc(100% + 12px);
-    margin-left: -6px;
-    padding-inline: 20px;
+    padding-inline: 12px;
+  }
+
+  .vinyl-pass__topline span:last-child {
+    display: none;
   }
 
   .vinyl-gate__privacy {
-    max-width: 25ch;
+    max-width: 23ch;
   }
 }
 
-@media (max-height: 720px) {
+@media (min-width: 769px) and (max-height: 720px) {
+  .vinyl-gate__shell {
+    padding:
+      max(16px, env(safe-area-inset-top))
+      clamp(34px, 5.5vw, 80px)
+      max(14px, env(safe-area-inset-bottom));
+  }
+
   .vinyl-gate__stage {
-    padding-bottom: 18px;
+    padding-block: 8px 8px;
   }
 
   .vinyl-form {
-    padding-block: 18px 16px;
+    width: min(650px, 56vw);
+    padding: 20px 38px 16px;
+  }
+
+  .vinyl-pass__topline {
+    padding-bottom: 9px;
+    font-size: 9px;
+  }
+
+  .vinyl-pass__title {
+    margin-top: 15px;
+    font-size: clamp(3.8rem, 5.4vw, 4.85rem);
   }
 
   .vinyl-pass__prompt {
-    margin-top: 12px;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .vinyl-pass__hook {
+    margin-top: 8px;
+    font-size: 17px;
+    line-height: 1.36;
+  }
+
+  .vinyl-pass__invitation {
+    margin-top: 8px;
+    font-size: 20px;
+  }
+
+  .vinyl-form__fields-intro {
+    margin-top: 17px;
+    padding-top: 10px;
   }
 
   .vinyl-form__fields {
-    margin-top: 14px;
-    padding-top: 9px;
+    margin-top: 8px;
+  }
+
+  .vinyl-field input {
+    min-height: 44px;
+    padding-block: 5px 7px;
+  }
+
+  .vinyl-field__error {
+    min-height: 14px;
+    margin-top: 2px;
   }
 
   .vinyl-form__submit {
-    min-height: 50px;
+    min-height: 54px;
+    margin-top: 9px;
+  }
+
+  .vinyl-form__coin-mark {
+    width: 52px;
+    height: 52px;
+  }
+
+  .vinyl-form__status {
+    min-height: 14px;
+    margin-top: 4px;
+    font-size: 10px;
+  }
+
+  .vinyl-gate__privacy,
+  .vinyl-gate__pass {
+    font-size: 10px;
   }
 }
 
@@ -788,7 +1000,9 @@ html.access-revealing body > :not(.vinyl-gate):not(.cursor-dot):not(.cursor-ring
     transition-duration: 0.01ms !important;
   }
 
+  .vinyl-form,
+  .vinyl-gate__footer,
   .vinyl-gate.is-committing .vinyl-form {
-    animation: none;
+    animation: none !important;
   }
 }

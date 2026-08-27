@@ -32,6 +32,9 @@
     "video/" + gateFilmStem + "-poster.webp",
     assetRoot,
   ).href;
+  /* The poster files are this exact frame of each film, so the still the
+     visitor fills the form against is the same shot the film resumes on. */
+  var POSTER_TIME = 0.15;
   var coinAudioContext;
   var reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
@@ -95,15 +98,16 @@
     '<form class="vinyl-form" action="' +
     endpoint +
     '" method="post" novalidate>' +
+    '<div class="vinyl-pass__topline" aria-hidden="true"><span>Joe Chan \u00b7 Selected work</span><span>Hong Kong \u00b7 2026</span></div>' +
     '<div class="vinyl-pass__head">' +
     '<h1 class="vinyl-pass__title" id="vinyl-gate-title"><span>Joe\u2019s</span> <em>portfolio</em></h1>' +
-    '<span class="vinyl-pass__side">Visitor details</span>' +
     "</div>" +
     '<p class="vinyl-pass__prompt">' +
-    '<span class="vinyl-pass__identity">I\u2019m Joe \u2014 a Hong Kong-based Product Designer and Product Manager.</span>' +
-    '<strong class="vinyl-pass__hook">Inside: selected case studies showing how strategy, systems and design move from first idea to real-world launch.</strong>' +
-    '<span class="vinyl-pass__instruction">Leave your name and company below, then insert the coin to enter.</span>' +
+    '<span class="vinyl-pass__identity">Welcome \u2014 I\u2019m Joe, a Hong Kong-based Product Designer and Product Manager.</span>' +
+    '<strong class="vinyl-pass__hook">Inside is a selection of product work: strategy, systems and design, from first idea through launch.</strong>' +
+    '<em class="vinyl-pass__invitation">Come in \u2014 I\u2019d love to show you around.</em>' +
     "</p>" +
+    '<p class="vinyl-form__fields-intro"><span>A quick hello before the record drops</span><span>Leave your name and company</span></p>' +
     '<div class="vinyl-form__fields">' +
     '<div class="vinyl-field">' +
     '<label for="visitor-name">Your name</label>' +
@@ -111,8 +115,8 @@
     '<p class="vinyl-field__error" id="visitor-name-error"></p>' +
     "</div>" +
     '<div class="vinyl-field">' +
-    '<label for="visitor-company">Company / organisation</label>' +
-    '<input id="visitor-company" name="company" type="text" autocomplete="organization" placeholder="Company name" minlength="2" maxlength="120" aria-describedby="visitor-company-error" required />' +
+    '<label for="visitor-company">Where you work</label>' +
+    '<input id="visitor-company" name="company" type="text" autocomplete="organization" placeholder="Company or studio" minlength="2" maxlength="120" aria-describedby="visitor-company-error" required />' +
     '<p class="vinyl-field__error" id="visitor-company-error"></p>' +
     "</div>" +
     "</div>" +
@@ -120,13 +124,13 @@
     '<label for="visitor-website">Leave this field empty</label>' +
     '<input id="visitor-website" name="_honey" type="text" tabindex="-1" autocomplete="off" />' +
     "</div>" +
-    '<button class="vinyl-form__submit" type="submit"><span class="vinyl-form__submit-label">Insert coin &amp; enter portfolio</span><span class="vinyl-form__coin-mark" aria-hidden="true"><span>J</span></span></button>' +
+    '<button class="vinyl-form__submit" type="submit"><span class="vinyl-form__submit-label">Drop the coin &amp; step inside</span><span class="vinyl-form__coin-mark" aria-hidden="true"><span>J</span></span></button>' +
     '<p class="vinyl-form__status" role="status" aria-live="polite"></p>' +
     "</form>" +
     "</main>" +
     '<footer class="vinyl-gate__footer">' +
-    '<p class="vinyl-gate__privacy">Your name and company are sent privately to Joe. They are not displayed publicly.</p>' +
-    '<span class="vinyl-gate__pass">30-day access</span>' +
+    '<p class="vinyl-gate__privacy">Just between us \u2014 your name and company are only sent to Joe.</p>' +
+    '<span class="vinyl-gate__pass">Your pass lasts 30 days</span>' +
     "</footer>" +
     "</div>";
 
@@ -198,8 +202,8 @@
   function positionSlotAnchor() {
     var sourceWidth = gateUsesPortraitFilm ? 900 : 1440;
     var sourceHeight = gateUsesPortraitFilm ? 1600 : 900;
-    var slotX = sourceWidth * (gateUsesPortraitFilm ? 0.726 : 0.702);
-    var slotY = sourceHeight * (gateUsesPortraitFilm ? 0.488 : 0.484);
+    var slotX = sourceWidth * (gateUsesPortraitFilm ? 0.719 : 0.69);
+    var slotY = sourceHeight * (gateUsesPortraitFilm ? 0.494 : 0.49);
     var scale = Math.max(
       window.innerWidth / sourceWidth,
       window.innerHeight / sourceHeight,
@@ -618,7 +622,9 @@
       armProgressWatchdog();
 
       try {
-        film.currentTime = 0;
+        /* The poster is frame 0.15s. Starting at 0 would drop back through the
+           film's lead-in black before returning to the same shot. */
+        film.currentTime = POSTER_TIME;
         var playback = film.play();
         if (playback && playback.catch) {
           playback.catch(function () {
