@@ -2135,6 +2135,10 @@ body.cursor-view .cursor-ring .cursor-label {
   backdrop-filter: blur(12px);
 }
 
+/* Eleven cases no longer fit one desktop row, so the list wraps into two.
+   940px is where the eleven chips first settle at 6 + 5; below it they
+   break to three rows, so narrower screens keep the scrolling single row
+   rather than spend 168px of height before the archive starts. */
 .flow-case-list {
   display: flex;
   gap: 8px;
@@ -2143,6 +2147,14 @@ body.cursor-view .cursor-ring .cursor-label {
   padding: 10px 0;
   list-style: none;
   scrollbar-width: none;
+}
+
+@media (min-width: 940px) {
+  .flow-case-list {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    overflow-x: visible;
+  }
 }
 
 .flow-case-list::-webkit-scrollbar {
