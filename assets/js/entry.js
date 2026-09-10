@@ -1,65 +1,22 @@
-/* Play the power-on moment automatically on each homepage load. */
+/* Start the entrance once the access gate has finished. */
 (function () {
   "use strict";
-  var scene = document.querySelector(".crate-scene");
-  var cue = document.querySelector(".intro-cue");
-  var rail = document.getElementById("rail");
-  if (!scene || !cue || !rail || !rail.children.length || document.querySelector(".vinyl-gate")) return;
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (reduced.matches) return;
-  var state = "standby";
-  var timer;
-  var paths = [
-    "M0 220h134l34 34h178l38 38h92",
-    "M1440 150h-112l-38 38h-190l-40 40h-82",
-    "M0 700h116l36-36h208l42-42h76",
-    "M1440 504h-118l-28-28h-142l-30 30H1014"
-  ];
-  var namespace = "http://www.w3.org/2000/svg";
-  var circuits = document.createElementNS(namespace, "svg");
-  circuits.setAttribute("viewBox", "0 0 1440 900");
-  circuits.setAttribute("preserveAspectRatio", "none");
-  circuits.setAttribute("aria-hidden", "true");
-  circuits.classList.add("entry-circuits");
-  paths.forEach(function (d, i) {
-    ["entry-trace", "entry-pulse"].forEach(function (className) {
-      var path = document.createElementNS(namespace, "path");
-      path.setAttribute("d", d);
-      path.setAttribute("pathLength", "1");
-      path.classList.add(className);
-      path.style.setProperty("--entry-delay", i * 65 + "ms");
-      circuits.appendChild(path);
-    });
-  });
-  var light = document.createElement("div");
-  light.className = "entry-light";
-  light.setAttribute("aria-hidden", "true");
-  scene.prepend(circuits, light);
-  scene.classList.add("entry-standby");
-  function finish() {
-    if (state === "done") return;
-    state = "done";
-    clearTimeout(timer);
-    scene.classList.remove("entry-standby", "entry-starting");
-    circuits.remove();
-    light.remove();
-    scene.removeEventListener("pointerdown", browseDirectly, true);
-    scene.removeEventListener("keydown", browseDirectly, true);
-    document.removeEventListener("visibilitychange", visibility);
+  var started = false;
+  var observer;
+  var ready = false;
+  function start() {
+    if (!ready || started || document.querySelector(".vinyl-gate") || document.documentElement.classList.contains("access-pending")) return;
+    started = true;
+    if (observer) observer.disconnect();
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || window.scrollY > 80) return;
+    import("./entry-flight.js").then(function (module) { return module.playEntrance(); }).catch(function () {});
   }
-  function browseDirectly(event) {
-    if (event.target.closest(".crate") || event.key === "Escape") finish();
-  }
-  function visibility() { if (document.hidden && state === "starting") finish(); }
-  scene.addEventListener("pointerdown", browseDirectly, true);
-  scene.addEventListener("keydown", browseDirectly, true);
-  document.addEventListener("visibilitychange", visibility);
-  requestAnimationFrame(function () {
-    if (state !== "standby") return;
-    state = "starting";
-    scene.classList.add("entry-starting");
-    timer = setTimeout(finish, 2100);
-  });
+  observer = new MutationObserver(start);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  observer.observe(document.body, { childList: true });
+  function readyToStart() { ready = true; start(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", readyToStart, { once: true });
+  else readyToStart();
 })();
 
 /* Give the artwork and its circuit backing separate planes in 3D space. */
