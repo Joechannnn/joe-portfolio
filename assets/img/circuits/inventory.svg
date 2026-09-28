@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" fill="none" shape-rendering="geometricPrecision">
+ <g stroke="#fff" stroke-width="3" opacity=".42" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M0 198h134l54-54h152M0 237h148l52-52h100M56 0v88l42 42h104M1100 0v143l-40 40v114M1254 168h-113l-32 32v136M1254 207h-81l-30 30v90M0 725h73l54-54v-94M0 780h97l52-52v-66M1254 704h-80l-57 57v93M1254 757h-55l-30 30v88M35 1254v-121l43-43h148M0 1130h116l35-35h133M399 1254v-57l33-33h113M451 1254v-39l32-32h90M1254 1124h-96l-48-48h-90M1195 1254v-88l-43-43h-168M853 1254v-76l-36-36h-92"/>
+  <rect x="330" y="134" width="20" height="20"/><rect x="190" y="119" width="22" height="22"/><rect x="111" y="559" width="32" height="32"/><rect x="1099" y="852" width="32" height="32"/><rect x="282" y="1082" width="26" height="26"/><rect x="705" y="1131" width="23" height="23"/>
+ </g>
+ <g fill="#fff" opacity=".42"><rect x="556" y="1175" width="14" height="14"/><rect x="590" y="1175" width="14" height="14"/><rect x="624" y="1175" width="14" height="14"/><rect x="658" y="1175" width="14" height="14"/></g>
+</svg>

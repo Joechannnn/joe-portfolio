@@ -1,6 +1,6 @@
-.inventory-case{--inventory-accent:#ac2928}
+.inventory-case{--inventory-accent:#457aa6}
 .inventory-case .case-title{max-width:1200px;font-size:clamp(2.6rem,6vw,5.25rem);line-height:1.02}
-.inventory-kicker{display:block;color:#9c2d29;margin-bottom:24px;font-size:11px;text-transform:uppercase;letter-spacing:.19em}
+.inventory-kicker{display:block;color:var(--inventory-accent);margin-bottom:24px;font-size:11px;text-transform:uppercase;letter-spacing:.19em}
 .inventory-note{font-size:12px;color:#777;max-width:630px;margin:26px 0 0;line-height:1.7}
 .inventory-hero{margin:0;background:#101413;padding:clamp(28px,5vw,76px) max(24px,calc((100vw - 1200px)/2));color:#e7e8e4}
 .inventory-hero a{display:block}.inventory-hero img{display:block;width:100%;height:auto;border:1px solid #404644;border-radius:7px}
@@ -15,17 +15,17 @@
 .inventory-comparison .label{margin-bottom:14px;display:block;font-size:10px}
 .inventory-steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #c7ccc8;border-bottom:1px solid #c7ccc8;margin:28px 0 22px;padding:24px 0;gap:30px;list-style:none}
 .inventory-steps li{padding:0!important;margin:0!important}.inventory-steps li::before{display:none}
-.inventory-steps span{font-size:11px;letter-spacing:.15em;color:#a32323;display:block;margin-bottom:14px}
+.inventory-steps span{font-size:11px;letter-spacing:.15em;color:var(--inventory-accent);display:block;margin-bottom:14px}
 .inventory-steps strong{font-size:17px;font-weight:500;display:block;margin-bottom:8px}
 .inventory-steps p{font-size:14px;line-height:1.6;margin:0;color:#525b54}
 .inventory-detail{padding:72px 0;background:#0b100e;color:#f2f1eb}
 .inventory-detail .container{display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:center}
 .inventory-detail h2{font-size:clamp(28px,3.6vw,45px);line-height:1.1;text-transform:uppercase;margin-bottom:24px}
 .inventory-detail p{color:#b5beb7;font-size:16px;line-height:1.7;margin-bottom:22px}
-.inventory-detail .label{color:#b78370;font-size:11px;margin-bottom:22px;display:block}
+.inventory-detail .label{color:#8eafca;font-size:11px;margin-bottom:22px;display:block}
 .inventory-detail figure{margin:0;min-width:0}.inventory-detail img{width:100%;height:auto;display:block;border:1px solid #354138}
 .inventory-detail figcaption{font-size:11px;color:#96a298;margin-top:16px;line-height:1.7}
 .inventory-detail--reverse{background:#151c17}
 .inventory-detail--reverse .container{grid-template-columns:1.6fr 1fr}.inventory-detail--reverse figure{grid-column:1;grid-row:1}
-.inventory-outcome{border-left:2px solid #a92323;padding-left:24px;font-family:var(--font-serif);font-size:clamp(26px,3vw,38px);line-height:1.3;margin:28px 0}
+.inventory-outcome{border-left:2px solid var(--inventory-accent);padding-left:24px;font-family:var(--font-serif);font-size:clamp(26px,3vw,38px);line-height:1.3;margin:28px 0}
 @media(max-width:768px){.inventory-hero figcaption{display:block}.inventory-hero figcaption span{display:block;margin-bottom:8px}.inventory-comparison{grid-template-columns:1fr;gap:38px}.inventory-evolution,.inventory-detail{padding:46px 0}.inventory-steps{grid-template-columns:1fr;gap:24px}.inventory-detail .container,.inventory-detail--reverse .container{grid-template-columns:1fr;gap:24px}.inventory-detail--reverse figure{grid-column:auto;grid-row:auto}.inventory-note{font-size:11px}}

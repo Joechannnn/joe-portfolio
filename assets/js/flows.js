@@ -7,7 +7,7 @@
     "kicker": "Operations · From records to daily work",
     "intro": "Recreated views of the finished inventory GUI and its reference structure. All operational values, products, suppliers and identifiers are fictional portfolio examples.",
     "back": "inventory.html",
-    "accent": "#a82222",
+    "accent": "#457aa6",
     "coverage": "3 interface views + 1 reference recreation",
     "layout": "Overview · incomplete journey evidence",
     "groups": [
