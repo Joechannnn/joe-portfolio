@@ -7,7 +7,7 @@
     <title>Screen Flow Library · Joe Chan</title>
     <meta
       name="description"
-      content="A screen and flow archive for Joe Chan's five most recent product design case studies."
+      content="A screen and flow archive for Joe Chan's product design case studies."
     />
     <link rel="icon" href="../assets/img/logo-j.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +27,7 @@
         <div class="nav-left">
           <a href="../index.html">home</a>
           <a href="../index.html#work">work</a>
-          <a id="flow-back-nav" href="../index.html#work">case study</a>
+          <a id="flow-back-nav" href="../index.html#work">case</a>
         </div>
         <div class="nav-hello" aria-hidden="true">
           <span>S</span><span>C</span><span>R</span><span>E</span><span>E</span
@@ -46,14 +46,16 @@
           <a class="flow-back" id="flow-back" href="../index.html#work"
             >← Back to case study</a
           >
+          <p class="flow-kicker" id="flow-kicker"></p>
           <h1 id="flow-title">Project screen flow</h1>
           <p class="flow-intro" id="flow-intro"></p>
           <div class="flow-meta" aria-label="Archive information">
             <span id="flow-coverage">Available screen evidence</span>
-            <span>5 recent case studies</span>
+            <span>Selected journeys &amp; artifacts</span>
             <span id="flow-layout">Mobile-first layout</span>
             <span>Click any screen to inspect</span>
           </div>
+          <p class="flow-evidence" id="flow-evidence" hidden></p>
         </div>
       </section>
 
@@ -72,7 +74,7 @@
       </noscript>
     </main>
 
-    <dialog class="flow-dialog" id="flow-dialog">
+    <dialog class="flow-dialog" id="flow-dialog" aria-labelledby="flow-dialog-caption">
       <button class="flow-dialog-close" type="button" aria-label="Close image">
         Close
       </button>
