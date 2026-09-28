@@ -23,9 +23,15 @@
   .stage-depth img { translate: none; }
 }
 
-.entry-flight { position: fixed; inset: 0; z-index: 9000; pointer-events: none; background: #0a0e0e; overflow: hidden; }
+.entry-flight,
+.entry-flight-standby { position: fixed; inset: 0; z-index: 9000; pointer-events: none; background: #0a0e0e; overflow: hidden; }
+.entry-flight-standby.is-leaving { opacity: 0; transition: opacity .45s ease-out; }
+.is-leaving .entry-flight-skip { pointer-events: none; }
+/* Covers the first paint until the entrance script takes over; stays under the access gate. */
+html.entry-standby body::after { content: ""; position: fixed; inset: 0; z-index: 8999; background: #0a0e0e; pointer-events: none; animation: entry-standby-release .45s ease-out 3s forwards; }
+@keyframes entry-standby-release { to { opacity: 0; visibility: hidden; } }
 .entry-flight canvas { display: block; width: 100%; height: 100%; }
 .entry-flight-skip { position: absolute; top: 28px; right: 32px; pointer-events: auto; padding: 10px 14px; color: #dddcd4; background: rgba(10,14,14,.88); border: 0; border-bottom: 1px solid #68706a; font: italic 18px var(--font-serif); cursor: pointer; }
 .entry-flight-skip:focus-visible { outline: 2px solid #ffb03a; outline-offset: 6px; }
 @media (max-width: 768px) { .entry-flight-skip { top: 18px; right: 24px; font-size: 16px; } }
-@media (prefers-reduced-motion: reduce) { .entry-flight { display: none; } }
+@media (prefers-reduced-motion: reduce) { .entry-flight, .entry-flight-standby, html.entry-standby body::after { display: none; } }

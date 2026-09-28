@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <script>document.documentElement.classList.add(/(?:^|;\s*)joe_portfolio_access=1(?:;|$)/.test(document.cookie) ? "access-granted" : "access-pending");</script>
+    <script>(function () { var seen = false; try { seen = sessionStorage.getItem("portfolio-entrance") === "seen"; } catch (e) {} if ((!seen || new URLSearchParams(location.search).get("entrance") === "full") && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("entry-standby"); })();</script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Joe's Portfolio | Joe Chan — Product Designer &amp; PM</title>

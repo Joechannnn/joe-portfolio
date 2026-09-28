@@ -2,26 +2,37 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { createEntranceDevice, entranceDevices } from './entry-devices.js';
 import { createCircuitLights } from './entry-circuits.js';
 
-export async function playEntrance() {
+export async function playEntrance(standby) {
   const host=document.querySelector('.crate-scene');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  if(!host||reduced.matches||document.hidden)return;
+  if(!host||reduced.matches||document.hidden){standby?.remove();return;}
+  if(standby&&!standby.isConnected)return;
   const force=new URLSearchParams(location.search).get('entrance')==='full';
   let seen=false;
   try{seen=sessionStorage.getItem('portfolio-entrance')==='seen';}catch{}
   if(seen&&!force){
+    standby?.remove();
     const animation=host.animate([{opacity:.6},{opacity:1}],{duration:550,easing:'ease-out'});
     const stop=()=>animation.cancel();
     reduced.addEventListener('change',stop,{once:true});
     animation.finished.finally(()=>reduced.removeEventListener('change',stop)).catch(()=>{});
     return;
   }
-  const overlay=document.createElement('div');overlay.className='entry-flight';
+  // Assets load behind a cover in the scene's own colour; playback continues straight from it.
+  const overlay=standby||document.createElement('div');
+  if(!standby){
+    overlay.className='entry-flight-standby';
+    const button=document.createElement('button');button.className='entry-flight-skip';button.type='button';button.textContent='Skip intro';
+    overlay.append(button);document.body.append(overlay);
+  }
+  const skip=overlay.querySelector('.entry-flight-skip');
   const canvas=document.createElement('canvas');canvas.setAttribute('aria-hidden','true');
-  const skip=document.createElement('button');skip.className='entry-flight-skip';skip.type='button';skip.textContent='Skip intro';
-  overlay.append(canvas,skip);
+  function leave(){
+    if(document.activeElement===skip)document.getElementById('next')?.focus({preventScroll:true});
+    skip.hidden=true;overlay.classList.add('is-leaving');setTimeout(()=>overlay.remove(),450);
+  }
   let renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});}catch{return;}
+  try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});}catch{leave();return;}
   renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<768?1.25:1.5));
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   const scene=new THREE.Scene();scene.background=new THREE.Color('#0a0e0e');
@@ -36,12 +47,14 @@ export async function playEntrance() {
   const targets=[];
   let interrupted=false;
   const interrupt=()=>{interrupted=true;finish();};
-  function finish(){
+  const fail=()=>finish(true);
+  function finish(fade){
     if(!alive)return;alive=false;
     clearTimeout(timer);cancelAnimationFrame(frame);
     animations.forEach(a=>a.cancel());
     const hadFocus=document.activeElement===skip;
-    overlay.remove();host.classList.remove('entry-flight-active');
+    if(fade===true&&!started)leave();else overlay.remove();
+    host.classList.remove('entry-flight-active');
     document.removeEventListener('pointerdown',interrupt,true);
     document.removeEventListener('keydown',interrupt,true);
     document.removeEventListener('wheel',interrupt);
@@ -63,9 +76,9 @@ export async function playEntrance() {
   document.addEventListener('visibilitychange',hide);
   window.addEventListener('resize',resize);
   reduced.addEventListener('change',interrupt);
-  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();finish();},{once:true});
-  // Asset preparation never blocks the existing page or its controls.
-  timer=setTimeout(finish,5000);
+  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();fail();},{once:true});
+  // Slow asset preparation gives the page back instead of holding the cover.
+  timer=setTimeout(fail,5000);
   try{
     scene.add(new THREE.HemisphereLight(0xe4eef1,0x24201a,2.2));
     const key=new THREE.DirectionalLight(0xffffff,4.5);key.position.set(-6,8,15);scene.add(key);
@@ -89,12 +102,16 @@ export async function playEntrance() {
     const signal=new THREE.Line(signalGeometry,signalMaterial);scene.add(signal);dispose.push(signalGeometry,signalMaterial);
     const viewport={w:innerWidth,h:innerHeight};
     const distance=8,viewHeight=2*distance*Math.tan(THREE.MathUtils.degToRad(58/2)),viewWidth=viewHeight*camera.aspect;
-    panels.forEach(mesh=>{
-      const rect=document.getElementById('sleeve-'+(mesh.userData.index+1)).getBoundingClientRect();
-      const cx=THREE.MathUtils.clamp(rect.left+rect.width/2,viewport.w*.25,viewport.w*.78);
-      const cy=THREE.MathUtils.clamp(rect.top+rect.height/2,viewport.h*.65,viewport.h*.9);
-      targets.push({x:(cx/viewport.w-.5)*viewWidth,y:(.5-cy/viewport.h)*viewHeight,scale:Math.max(.12,rect.width/viewport.w*viewWidth/mesh.userData.width)});
-    });
+    const sizes=panels.map(mesh=>new THREE.Box3().setFromObject(mesh).getSize(new THREE.Vector3()));
+    // Every device is filed into the Collection sleeve, measured at settle time once the sleeves have come to rest.
+    // Without that sleeve on screen the devices carry on past the edge instead.
+    function aim(){
+      const sleeve=document.getElementById('sleeve-0'),rect=sleeve?.getBoundingClientRect();
+      const shown=rect&&rect.width>0&&rect.left>=0&&rect.top>=0&&rect.right<=viewport.w&&rect.bottom<=viewport.h&&+getComputedStyle(sleeve).opacity>=.5;
+      const w=shown&&rect.width/viewport.w*viewWidth,h=shown&&rect.height/viewport.h*viewHeight,x=shown&&((rect.left+rect.width/2)/viewport.w-.5)*viewWidth,y=shown&&(.5-(rect.top+rect.height/2)/viewport.h)*viewHeight;
+      panels.forEach((mesh,i)=>targets.push(shown?{x,y,fan:i-(panels.length-1)/2,dx:w*.07,dy:h*.035,scale:Math.min(w/sizes[i].x,h/sizes[i].y)}:null));
+      canvas.dataset.landing=shown?'sleeve-0':'out';
+    }
     canvas.dataset.devices=choices.map(x=>x.type).join(',');
     canvas.dataset.screens=choices.map(x=>x.screen).join(',');
     // Compile and draw once offscreen so shader startup cannot consume the flight.
@@ -104,7 +121,7 @@ export async function playEntrance() {
     renderer.render(scene,camera);renderer.getContext().finish();
     if(!alive||interrupted||document.hidden)return;
     clearTimeout(timer);
-    document.body.append(overlay);host.classList.add('entry-flight-active');
+    overlay.classList.replace('entry-flight-standby','entry-flight');overlay.prepend(canvas);host.classList.add('entry-flight-active');
     try{sessionStorage.setItem('portfolio-entrance','seen');}catch{}
     host.querySelectorAll('.intro-title .line').forEach((line,i)=>animations.push(line.animate([
       {opacity:0,transform:'perspective(900px) translateY(65px) rotateX(-45deg)'},
@@ -124,26 +141,37 @@ export async function playEntrance() {
       camera.rotation.z=Math.sin(travel*Math.PI)*.018;
       signal.scale.x=THREE.MathUtils.clamp(t/.28,0,1);signalMaterial.opacity=Math.max(0,1-t/.55);
       const settle=THREE.MathUtils.clamp((t-1.55)/.75,0,1),eased=1-Math.pow(1-settle,3);
+      if(t>=1.55&&!targets.length)aim();
       panels.forEach((mesh,i)=>{
         const {side,depth}=mesh.userData;
         if(t<1.55){
           mesh.position.set(side*(innerWidth<768?2.6:4.0),i%2?.72:-.55,depth);
           mesh.rotation.set(.035,-side*(.32+travel*.18),-side*.035);mesh.scale.setScalar(1);
           mesh.visible=t>.16+i*.02;
+        }else if(!targets[i]){
+          // No sleeve on screen for this device: it carries on past the edge.
+          mesh.position.set(side*viewWidth*THREE.MathUtils.lerp(.8,1.6,eased),THREE.MathUtils.lerp((i%2?.22:-.18)*viewHeight,0,eased),camera.position.z-distance-i*.025);
+          mesh.scale.setScalar(1.2);mesh.rotation.set(.035,-side*.50,-side*.035);
+          mesh.visible=eased<1;
         }else{
-          const target=targets[i];
-          mesh.position.set(THREE.MathUtils.lerp(side*viewWidth*.8,target.x,eased),THREE.MathUtils.lerp((i%2?.22:-.18)*viewHeight,target.y,eased),camera.position.z-distance-i*.025);
-          mesh.scale.setScalar(THREE.MathUtils.lerp(1.2,target.scale,eased));
-          mesh.rotation.set(.035*(1-eased),-side*.50*(1-eased),-side*.035*(1-eased));
-          mesh.visible=true;
+          // Staggered arrival fans the devices over the sleeve, then each tucks in behind the last one down.
+          const {x,y,fan,dx,dy,scale}=targets[i],last=i===panels.length-1;
+          const arrive=1-Math.pow(1-THREE.MathUtils.clamp((t-1.55-i*.05)/.55,0,1),3);
+          const tuck=smooth(THREE.MathUtils.clamp((t-2.05-i*.05)/.25,0,1)),spread=(1-arrive*.35)*(1-tuck);
+          mesh.position.set(THREE.MathUtils.lerp(side*viewWidth*.8,x+fan*dx*spread,arrive),THREE.MathUtils.lerp((i%2?.22:-.18)*viewHeight,y+fan*dy*spread,arrive),camera.position.z-distance+i*.02);
+          mesh.scale.setScalar(THREE.MathUtils.lerp(1.2,scale*(last?1:.9+.02*i),arrive)*(last?1:1-tuck));
+          mesh.rotation.set(.035*(1-arrive),-side*.50*(1-arrive),-side*.035*(1-arrive)-fan*.05*spread);
+          mesh.visible=last||tuck<1;
         }
       });
       circuits.update(t,camera.position.z);
+      // The skip control goes before the cover thins, so it never sits over the nav.
+      if(t>=1.6&&!skip.hidden){if(document.activeElement===skip)document.getElementById('next')?.focus({preventScroll:true});skip.hidden=true;}
       overlay.style.opacity=String(1-smooth(THREE.MathUtils.clamp((t-1.60)/.90,0,1)));
       renderer.render(scene,camera);
       if(t>=2.5){finish();return;}
       frame=requestAnimationFrame(render);
     }
     frame=requestAnimationFrame(render);
-  }catch{finish();}
+  }catch{fail();}
 }
