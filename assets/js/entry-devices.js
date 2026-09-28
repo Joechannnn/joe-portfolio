@@ -1,12 +1,12 @@
 import * as THREE from '../vendor/three/three.module.min.js';
 
 export const entranceDevices=[
-  {type:'computer',index:0,screen:'assets/img/crm/dashboard-overview.png'},
-  {type:'phone',index:4,screen:'assets/img/vfit-home.png'},
-  {type:'tablet',index:6,screen:'assets/img/bba-report-green.jpg'},
-  {type:'phone',index:5,screen:'assets/img/readtongue-welcome.jpg'},
-  {type:'computer',index:0,screen:'assets/img/crm/campaign-builder.png'},
-  {type:'tablet',index:6,screen:'assets/img/bba-aura-concept.webp'}
+  {type:'computer',index:1,screen:'assets/img/crm/dashboard-overview.png'},
+  {type:'phone',index:5,screen:'assets/img/vfit-home.png'},
+  {type:'tablet',index:7,screen:'assets/img/bba-report-green.jpg'},
+  {type:'phone',index:6,screen:'assets/img/readtongue-welcome.jpg'},
+  {type:'computer',index:1,screen:'assets/img/crm/campaign-builder.png'},
+  {type:'tablet',index:7,screen:'assets/img/bba-aura-concept.webp'}
 ];
 
 function outline(w,h,r){

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.classList.add(/(?:^|;\s*)joe_portfolio_access=1(?:;|$)/.test(document.cookie) ? "access-granted" : "access-pending");</script>
+    <title>Inventory Operations — From Records to Daily Work · Joe Chan</title>
+    <meta
+      name="description"
+      content="Case study: requirements, workflow design, GUI design and front-end development for an inventory and replenishment operations interface."
+    />
+    <link rel="icon" href="../assets/img/logo-j.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/access.css" />
+    <link rel="stylesheet" href="../assets/css/inventory-case.css" />
+    <script src="../assets/js/access.js" defer></script>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="container nav-inner">
+        <div class="nav-left">
+          <a href="../index.html">home</a>
+          <a href="../index.html#work">work</a>
+          <a href="../index.html#about">about</a>
+        </div>
+        <div class="nav-hello" aria-hidden="true">
+          <span>J</span><span>O</span><span>E</span><span>'</span><span>S</span
+          ><i class="nav-word-gap"></i><span>P</span><span>O</span><span>R</span
+          ><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span
+          ><span>O</span>
+        </div>
+        <div class="nav-right">
+          <a href="mailto:joechanwainam@gmail.com">contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="inventory-case">
+      <section class="case-hero" data-surface="light"><div class="container">
+        <span class="inventory-kicker">好大個網 · Internal operations · 2026</span>
+        <h1 class="case-title">From stock records<br>to daily operations.</h1>
+        <p class="case-intro">I turned a record-heavy administration interface into an operator-facing GUI for inventory and replenishment. My work covered requirements definition, workflow design, interface design and front-end development.</p>
+        <div class="case-meta">
+          <div><span class="meta-label">Role</span><p>Product design · Front-end development</p></div>
+          <div><span class="meta-label">Platform</span><p>Internal web application</p></div>
+          <div><span class="meta-label">Scope</span><p>Requirements · flows · GUI · implementation</p></div>
+          <div><span class="meta-label">Status</span><p>Completed interface · in use</p></div>
+        </div>
+        <a class="flow-library-link" href="flows.html?case=inventory"><span>Inspect the interface views</span><span aria-hidden="true">View screens →</span></a>
+        <p class="inventory-note">All interface visuals on this page are recreated for this portfolio using fictional quantities, product names, suppliers and identifiers. No live operational records are shown.</p>
+      </div></section>
+
+      <figure class="inventory-hero" data-surface="dark">
+        <a href="../assets/img/inventory/overview.webp" target="_blank" rel="noopener" aria-label="Open anonymised inventory overview image"><img width="2160" height="1875" src="../assets/img/inventory/overview.webp" alt="Recreated inventory dashboard with sample stock totals, supplier selector, status filters and grouped products"></a>
+        <figcaption><span>Inventory overview · the finished interface structure</span><span>Portfolio recreation / fictional data</span></figcaption>
+      </figure>
+
+      <section class="case-section" data-surface="light"><div class="container">
+        <h2 class="reveal">The starting point</h2><div class="case-body reveal">
+          <p>The reference backend exposed the underlying records directly: stock tables, restock orders, individual transactions and separate notification flags. Long product lists, internal identifiers and technical navigation competed for attention.</p>
+          <p>Those records contained the information needed to operate the business. The design task was to organise it around everyday questions: what is available, what needs replenishing, and what is waiting for the next step?</p>
+          <p class="case-quote">Make the next operational task visible without making the operator interpret the database.</p>
+        </div>
+      </div></section>
+
+      <section class="inventory-evolution" data-surface="light"><div class="container">
+        <h2>Same operation.<br>A clearer working view.</h2>
+        <div class="inventory-comparison">
+          <figure><span class="label">01 / Reference structure</span><a href="../assets/img/inventory/legacy.webp" target="_blank" rel="noopener" aria-label="Open recreated legacy backend image"><img loading="lazy" width="2160" height="1650" src="../assets/img/inventory/legacy.webp" alt="Anonymous recreation of a dense administrative table with transaction links and separate flags"></a><figcaption><strong>Organised around records.</strong>Model names, transaction links and technical flags sit alongside the information operators need. Recreated from the supplied reference, with fictional data.</figcaption></figure>
+          <figure><span class="label">02 / Completed GUI structure</span><a href="../assets/img/inventory/overview.webp" target="_blank" rel="noopener" aria-label="Open recreated finished dashboard"><img loading="lazy" width="2160" height="1875" src="../assets/img/inventory/overview.webp" alt="Inventory GUI recreation organising the same type of work around summaries, status filters and product groups"></a><figcaption><strong>Organised around tasks.</strong>A summary establishes priorities, grouped inventory supports inspection, and replenishment has its own visible workflow.</figcaption></figure>
+        </div>
+      </div></section>
+
+      <section class="case-section" data-surface="light"><div class="container">
+        <h2 class="reveal">Define the work before the screen</h2><div class="case-body reveal">
+          <p>I organised the requirements into three connected jobs. This gave the interface a practical structure and kept the GUI decisions tied to the work behind them.</p>
+          <ol class="inventory-steps">
+            <li><span>01 / Assess</span><strong>Read stock health</strong><p>See overall availability, shortages and replenishment in progress.</p></li>
+            <li><span>02 / Inspect</span><strong>Find the right SKU</strong><p>Narrow by supplier, stock status or search, then open a product group.</p></li>
+            <li><span>03 / Progress</span><strong>Follow replenishment</strong><p>Keep order preparation, incoming checks and completed work distinct.</p></li>
+          </ol>
+          <p>The navigation uses operational language: 庫存摘要, 庫存管理, 銷售工具 and 平台工具. The stock overview gives the operator a starting point before exposing individual records.</p>
+        </div>
+      </div></section>
+
+      <section class="inventory-detail" data-surface="dark"><div class="container">
+        <div><span class="label">Design decision / 01</span><h2>Overview first.<br>Detail when needed.</h2><p>Product groups keep the initial list manageable. Opening a group reveals SKU identifiers, available quantities and stock states in context.</p><p>Text labels distinguish 充裕, 少量 and 缺貨 alongside colour. A low-stock item can show both the replenishment action and an existing order reference.</p></div>
+        <figure><a href="../assets/img/inventory/detail.webp" target="_blank" rel="noopener" aria-label="Open stock detail image"><img loading="lazy" width="2160" height="1935" src="../assets/img/inventory/detail.webp" alt="Recreated expanded stock group with fictional SKU codes, healthy, low and out-of-stock states, plus replenishment actions"></a><figcaption>A / Progressive disclosure connects the product group, SKU state and next action. Sample data.</figcaption></figure>
+      </div></section>
+
+      <section class="inventory-detail inventory-detail--reverse" data-surface="dark"><div class="container">
+        <div><span class="label">Design decision / 02</span><h2>Give each handoff<br>a visible state.</h2><p>The replenishment area separates 補貨訂單, 核對來貨 and 已完成. Orders remain grouped with their supplier, item list, quantities and current status.</p><p>The confirmation action sits with the order it belongs to. Operators can inspect its contents before moving it forward.</p></div>
+        <figure><a href="../assets/img/inventory/restock.webp" target="_blank" rel="noopener" aria-label="Open replenishment workflow image"><img loading="lazy" width="2160" height="1740" src="../assets/img/inventory/restock.webp" alt="Recreated replenishment view with three workflow tabs and fictional supplier orders"></a><figcaption>B / Separate workflow stages make preparation and receiving distinguishable. Sample data.</figcaption></figure>
+      </div></section>
+
+      <section class="case-section" data-surface="light"><div class="container">
+        <h2 class="reveal">Carry the design into the GUI</h2><div class="case-body reveal">
+          <p>I also developed the front end, carrying the information hierarchy and workflow into the completed interface. The scope included the summary layout, supplier selector, status filters, searchable product groups and replenishment views.</p>
+          <p>A consistent visual language connects these areas: red marks primary actions and key quantities, neutral surfaces separate sections, and labelled stock states make exceptions recognisable.</p>
+          <p>Keeping the product model and interface implementation together helped preserve the relationship between what a record means and what the operator can do next.</p>
+        </div>
+      </div></section>
+
+      <section class="case-section case-section--flush" data-surface="light"><div class="container">
+        <h2 class="reveal">The delivered result</h2><div class="case-body reveal">
+          <p>The completed internal interface brings inventory assessment, SKU inspection and replenishment tracking into one working environment.</p>
+          <p class="inventory-outcome">A technical backend translated into a GUI built around daily operational work.</p>
+          <p>This case demonstrates requirements definition, workflow modelling, interface design and front-end delivery. The result presented here is the completed product; operational time savings and business impact have not been quantified for this portfolio.</p>
+          <p class="case-credit">Visuals are portfolio recreations of the reference and finished interface. Product data, supplier identities, contact details, order references and quantities have been replaced with fictional examples.</p>
+        </div>
+      </div></section>
+      <section class="case-next" data-surface="light"><span class="label">Next case study</span><a href="crm.html">Audience to Action — CRM →</a></section>
+    </main>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
