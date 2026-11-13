@@ -44,7 +44,13 @@
       <div class="file-actions">
         <div class="collaborators" aria-label="Animation cursors: Layout, Type and Visuals"><span class="avatar avatar-layout" title="Layout cursor">L</span><span class="avatar avatar-type" title="Type cursor">T</span><span class="avatar avatar-visual" title="Visuals cursor">V</span></div>
         <button type="button" class="button quiet reader-toggle" id="reader-toggle" aria-pressed="false" disabled><svg class="icon"><use href="#i-book"/></svg><span>Read CV</span></button>
-        <a class="button download" id="cv-download" href="assets/cv/Joe_Chan_CV_Updated.pdf" download="Joe_Chan_CV.pdf"><svg class="icon"><use href="#i-download"/></svg><span>Download PDF</span></a>
+        <details class="download-menu">
+          <summary class="button download"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span>Download PDF</span><svg class="icon download-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="download-options">
+            <a href="assets/cv/Joe_Chan_CV_Updated.pdf" download="Joe_Chan_CV.pdf">CV <span>· 2 pages</span></a>
+            <a href="assets/cv/Joe_Chan_CV_Project_Anatomy.pdf" download="Joe_Chan_CV_Project_Anatomy.pdf">Project Anatomy <span>· 3 pages</span></a>
+          </div>
+        </details>
       </div>
     </header>
     <div class="editor-body">
@@ -92,7 +98,7 @@
         <section class="property-section"><h2 id="selection-name">A blank canvas</h2><p class="property-caption" id="selection-type">Three cursors. One story.</p><div class="property-grid"><span><small>W</small><b id="prop-width">842</b></span><span><small>H</small><b id="prop-height">595</b></span><span><small>X</small><b id="prop-x">0</b></span><span><small>Y</small><b id="prop-y">0</b></span></div></section>
         <section class="property-section"><h2>Type styles</h2><div class="type-spec"><svg class="icon"><use href="#i-text"/></svg><div><strong>Barlow Condensed</strong><span>Headings / Bold & Black</span></div></div><div class="type-spec"><svg class="icon"><use href="#i-text"/></svg><div><strong>Manrope</strong><span>Body / Regular & Medium</span></div></div></section>
         <section class="property-section"><h2>Document colours</h2><div class="colour-row"><span class="colour-swatch swatch-paper"></span><span>Paper</span><code>FCFCFB</code></div><div class="colour-row"><span class="colour-swatch swatch-ink"></span><span>Ink</span><code>15181C</code></div><div class="colour-row"><span class="colour-swatch swatch-burgundy"></span><span>Burgundy</span><code>BE1522</code></div></section>
-        <div class="property-footer"><svg class="icon"><use href="#i-check"/></svg><p>The original CV.<br>Built in front of you.</p></div>
+        <div class="property-footer"><svg class="icon"><use href="#i-check"/></svg><p>Project Anatomy</p></div>
       </aside>
     </div>
     <footer class="editor-status"><div class="status-copy"><span class="status-dot" id="status-dot"></span><span id="animation-status" role="status">Preparing the canvas</span></div><div class="progress-track" role="progressbar" aria-label="CV assembly" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="assembly-progress"><span id="progress-fill"></span></div><span class="status-page" id="status-page">01 / 03</span></footer>
@@ -104,7 +110,13 @@
       </header>
       <div id="reader-content"></div>
     </section>
-    <noscript><div class="no-script"><p>Read Joe Chan's latest CV in the PDF.</p><a class="button download" href="assets/cv/Joe_Chan_CV_Updated.pdf">Open Joe Chan's CV (PDF)</a></div></noscript>
+    <noscript>
+      <div class="no-script">
+        <p>Download a PDF to read Joe Chan’s CV.</p>
+        <a class="button download" href="assets/cv/Joe_Chan_CV_Updated.pdf" download="Joe_Chan_CV.pdf">CV · 2 pages</a>
+        <a class="button download" href="assets/cv/Joe_Chan_CV_Project_Anatomy.pdf" download="Joe_Chan_CV_Project_Anatomy.pdf">Project Anatomy · 3 pages</a>
+      </div>
+    </noscript>
   </main>
 </body>
 </html>
