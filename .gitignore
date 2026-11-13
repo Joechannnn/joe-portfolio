@@ -9,4 +9,7 @@ output/
 assets/blender/
 
 # personal documents
-CV/
+/CV/
+
+# local design verification captures
+.design/screenshots/
