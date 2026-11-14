@@ -489,6 +489,11 @@ body.cursor-view .cursor-ring .cursor-label {
   white-space: nowrap;
 }
 
+.wl-row--showcase { color: #e5bf69; }
+.wl-row--showcase > :is(.wl-num, .wl-title, .wl-tag, .wl-client) {
+  color: inherit;
+}
+
 /* Hovering one row recedes the others, so the eye keeps its place */
 @media (hover: hover) and (pointer: fine) {
   .worklist:hover .wl-row:not(:hover) {

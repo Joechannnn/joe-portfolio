@@ -437,6 +437,7 @@
       tagEl.textContent = c.tag;
       openEl.href = c.href;
       openEl.setAttribute("aria-label", "Open case study: " + c.a + " " + c.b);
+      window.ProjectLock?.updateLink(openEl);
 
       titleEl.setAttribute("aria-label", c.a + " " + c.b);
       titleEl.textContent = "";
@@ -665,8 +666,9 @@
         select(active - 1);
         e.preventDefault();
       }
-      if ((e.key === "Enter" || e.key === " ") && CASES[active].href) {
-        window.location.href = CASES[active].href;
+      if (e.target === crate && (e.key === "Enter" || e.key === " ") && CASES[active].href) {
+        var href = CASES[active].href;
+        if (!window.ProjectLock?.request(href, crate)) window.location.href = href;
         e.preventDefault();
       }
     });

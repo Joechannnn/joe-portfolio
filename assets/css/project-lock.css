@@ -1,0 +1,98 @@
+html.project-lock-pending { background: #0b0e0f; }
+
+.project-lock-pending body > :not(.project-lock-dialog) { display: none !important; }
+
+body:has(.project-lock-dialog[open]) { overflow: hidden; }
+
+body:has(.project-lock-dialog[open]) :is(.cursor-dot, .cursor-ring) { visibility: hidden; }
+
+.project-lock-dialog {
+  --project-lock-gold: #e5bf69;
+  width: min(390px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: clamp(22px, 6vw, 36px);
+  border: 1px solid #645537;
+  border-radius: 12px;
+  background: #151718;
+  color: #f8f3e8;
+  box-shadow: 0 22px 80px #0009;
+  font-family: var(--font-sans);
+  cursor: auto;
+}
+
+.project-lock-dialog::backdrop { background: #0b0e0fcc; backdrop-filter: blur(5px); }
+
+.project-lock-dialog h2 {
+  margin-block: 0 12px;
+  font-family: var(--font-serif);
+  font-size: clamp(2.3rem, 8vw, 3rem);
+  font-weight: 400;
+}
+
+.project-lock-dialog p { color: #e3ddd2; }
+
+.project-lock-dialog a,
+body.custom-cursor .project-lock-dialog a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--project-lock-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.project-lock-form { margin-top: 14px; }
+
+.project-lock-form label { display: block; margin-bottom: 8px; }
+
+.project-lock-form input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #8d826f;
+  border-radius: 4px;
+  background: #0b0e0f;
+  color: #f8f3e8;
+  font: inherit;
+  cursor: text;
+}
+
+.project-lock-form input[aria-invalid="true"] { border-color: #ffada7; }
+
+.project-lock-form .project-lock-error { min-height: 1.6em; margin-top: 3px; color: #ffada7; }
+
+.project-lock-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+
+.project-lock-actions button,
+body.custom-cursor .project-lock-actions button {
+  min-width: 84px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #8d826f;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.project-lock-actions .project-lock-submit { border-color: var(--project-lock-gold); background: var(--project-lock-gold); color: #0b0e0f; }
+
+.project-lock-dialog :focus-visible { outline: 2px solid var(--project-lock-gold); outline-offset: 3px; }
+
+.stage-open[data-project-locked]::after,
+.wl-row[data-project-locked] .wl-title::after {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-inline-start: 0.55em;
+  vertical-align: 0.02em;
+  background: #e5bf69;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4.5' y='9' width='11' height='8' rx='1.4'/%3E%3Cpath d='M7 9V6a3 3 0 0 1 6 0v3m-3 3.25v1.5'/%3E%3C/svg%3E") center/contain no-repeat;
+  content: "";
+}
+
+.stage-open[data-project-locked] { min-height: 44px; }
